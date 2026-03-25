@@ -1,17 +1,21 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zhoufj8 | Personal Site</title>
-  <meta name="description" content="Zhoufj8 的个人 GitHub 主页，展示量化学习路径、研究兴趣与未来项目计划。" />
+  <meta name="description" content="Zhoufj8 鐨勪釜浜?GitHub 涓婚〉锛屽睍绀洪噺鍖栧涔犺矾寰勩€佺爺绌跺叴瓒ｄ笌鏈潵椤圭洰璁″垝銆? />
   <style>
     :root {
-      --text: #f8f4ff;
-      --muted: rgba(238, 232, 255, 0.78);
-      --line-soft: rgba(255, 255, 255, 0.10);
-      --shadow: 0 18px 48px rgba(5, 6, 25, 0.28);
-      --radius-xl: 30px;
+      --bg: #fcfcf9;
+      --panel: rgba(255, 255, 255, 0.74);
+      --card: #ffffff;
+      --text: #171717;
+      --muted: #666666;
+      --line: #e8e5de;
+      --soft: #f3f0ea;
+      --accent: #111111;
+      --shadow: 0 10px 30px rgba(17, 17, 17, 0.05);
       --radius-lg: 24px;
       --radius-md: 18px;
       --radius-sm: 12px;
@@ -20,11 +24,14 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
-      background: #060813;
+      background:
+        radial-gradient(circle at top left, rgba(0, 0, 0, 0.03), transparent 28%),
+        linear-gradient(to bottom, #fffefb, var(--bg));
       line-height: 1.65;
     }
 
@@ -39,11 +46,10 @@
     .topbar-wrap {
       position: sticky;
       top: 0;
-      z-index: 60;
+      z-index: 50;
       backdrop-filter: blur(14px);
-      background: linear-gradient(90deg, rgba(52, 47, 143, 0.92), rgba(107, 24, 135, 0.92), rgba(147, 22, 74, 0.92));
-      border-bottom: 1px solid rgba(105, 182, 255, 0.16);
-      box-shadow: 0 6px 24px rgba(10, 10, 30, 0.22);
+      background: rgba(252, 252, 249, 0.78);
+      border-bottom: 1px solid rgba(232, 229, 222, 0.85);
     }
 
     .topbar {
@@ -51,14 +57,14 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      min-height: 68px;
+      min-height: 72px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.02em;
     }
 
@@ -66,12 +72,12 @@
       width: 38px;
       height: 38px;
       border-radius: 14px;
-      background: linear-gradient(135deg, #101010, #1f1f1f);
-      color: #ffc84d;
+      background: linear-gradient(135deg, #111111, #444444);
+      color: #ffffff;
       display: grid;
       place-items: center;
       font-size: 14px;
-      box-shadow: 0 0 0 1px rgba(255, 200, 77, 0.18), 0 12px 22px rgba(0, 0, 0, 0.24);
+      box-shadow: var(--shadow);
       flex: none;
     }
 
@@ -83,209 +89,54 @@
     }
 
     .nav a {
-      color: rgba(248, 244, 255, 0.88);
+      color: var(--muted);
       padding: 10px 14px;
       border-radius: 999px;
       transition: 0.2s ease;
       font-size: 14px;
-      position: relative;
     }
 
-    .nav a:hover,
-    .nav a.active {
-      color: #9dd7ff;
-    }
-
-    .nav a.active::after,
-    .nav a:hover::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -8px;
-      width: 42px;
-      height: 3px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #29d0ff, #7a7fff);
-      box-shadow: 0 0 16px rgba(41, 208, 255, 0.35);
+    .nav a:hover {
+      background: var(--soft);
+      color: var(--text);
     }
 
     .kbd-search {
       padding: 10px 14px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.75);
       border-radius: 999px;
-      color: rgba(248, 244, 255, 0.9);
+      color: var(--muted);
       font-size: 14px;
       display: flex;
       align-items: center;
       gap: 10px;
       white-space: nowrap;
       cursor: pointer;
-      backdrop-filter: blur(12px);
     }
 
     .kbd-search span:last-child {
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
       font-size: 12px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: #fff;
+      border: 1px solid var(--line);
       border-bottom-width: 2px;
       padding: 2px 8px;
       border-radius: 8px;
-      color: #67d6ff;
+      color: #444;
     }
 
-    .section {
-      position: relative;
-      overflow: hidden;
-      padding: 72px 0;
-      --bg-start: #0d1230;
-      --bg-mid: #1b1d55;
-      --bg-end: #3d1456;
-      --orb-a: rgba(53, 200, 255, 0.12);
-      --orb-b: rgba(255, 92, 174, 0.10);
-      --card-start: rgba(88, 125, 210, 0.20);
-      --card-end: rgba(95, 57, 156, 0.14);
-      --card-border: rgba(124, 215, 255, 0.16);
-      --chip-bg: rgba(94, 142, 255, 0.12);
-      --chip-text: #e3eaff;
-      --title-grad: linear-gradient(90deg, #35ccff, #7098ff 55%, #b86fff 100%);
-      --link-color: #dce8ff;
-      --line-accent: linear-gradient(90deg, rgba(0,0,0,0), #41d8ff, rgba(0,0,0,0));
-      background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 42%, var(--bg-end) 100%);
+    .hero {
+      padding: 72px 0 42px;
     }
 
-    .section::before,
-    .section::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      filter: blur(8px);
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+      gap: 24px;
+      align-items: stretch;
     }
 
-    .section::before {
-      width: 420px;
-      height: 420px;
-      left: -120px;
-      top: -120px;
-      background: radial-gradient(circle, var(--orb-a) 0%, transparent 68%);
-    }
-
-    .section::after {
-      width: 380px;
-      height: 380px;
-      right: -100px;
-      bottom: -120px;
-      background: radial-gradient(circle, var(--orb-b) 0%, transparent 68%);
-    }
-
-    .section-divider {
-      width: 128px;
-      height: 4px;
-      border-radius: 999px;
-      background: var(--line-accent);
-      margin: 0 auto 34px;
-      opacity: 0.95;
-    }
-
-    .theme-hero {
-      --bg-start: #342b92;
-      --bg-mid: #5f1c9c;
-      --bg-end: #8f185e;
-      --orb-a: rgba(45, 213, 255, 0.14);
-      --orb-b: rgba(255, 155, 73, 0.12);
-      --card-start: rgba(93, 123, 204, 0.32);
-      --card-end: rgba(121, 72, 203, 0.18);
-      --card-border: rgba(119, 214, 255, 0.20);
-      --chip-bg: rgba(99, 152, 255, 0.12);
-      --chip-text: #eef3ff;
-      --title-grad: linear-gradient(90deg, #30d0ff 0%, #57a8ff 35%, #7f88ff 62%, #b26bff 100%);
-      --line-accent: linear-gradient(90deg, rgba(0,0,0,0), #4dd3ff, rgba(0,0,0,0));
-    }
-
-    .theme-about {
-      --bg-start: #040912;
-      --bg-mid: #07172c;
-      --bg-end: #0f1d40;
-      --orb-a: rgba(31, 198, 255, 0.08);
-      --orb-b: rgba(41, 217, 129, 0.08);
-      --card-start: rgba(21, 53, 84, 0.42);
-      --card-end: rgba(11, 33, 53, 0.22);
-      --card-border: rgba(65, 216, 255, 0.14);
-      --chip-bg: rgba(44, 210, 129, 0.10);
-      --chip-text: #8ef0be;
-      --title-grad: linear-gradient(90deg, #64ffb2 0%, #36d6ff 100%);
-      --link-color: #9fe2ff;
-      --line-accent: linear-gradient(90deg, rgba(0,0,0,0), #36d6ff, rgba(0,0,0,0));
-    }
-
-    .theme-timeline {
-      --bg-start: #060a15;
-      --bg-mid: #0b1835;
-      --bg-end: #16295d;
-      --orb-a: rgba(62, 173, 255, 0.10);
-      --orb-b: rgba(122, 127, 255, 0.08);
-      --card-start: rgba(22, 44, 94, 0.40);
-      --card-end: rgba(22, 28, 74, 0.18);
-      --card-border: rgba(85, 154, 255, 0.18);
-      --chip-bg: rgba(63, 118, 255, 0.12);
-      --chip-text: #b9d7ff;
-      --title-grad: linear-gradient(90deg, #46c9ff 0%, #5c95ff 45%, #8a70ff 100%);
-      --link-color: #cce0ff;
-      --line-accent: linear-gradient(90deg, rgba(0,0,0,0), #4da7ff, rgba(0,0,0,0));
-    }
-
-    .theme-projects {
-      --bg-start: #080814;
-      --bg-mid: #231049;
-      --bg-end: #4e1658;
-      --orb-a: rgba(179, 92, 255, 0.10);
-      --orb-b: rgba(255, 95, 177, 0.10);
-      --card-start: rgba(91, 44, 126, 0.34);
-      --card-end: rgba(54, 22, 78, 0.18);
-      --card-border: rgba(212, 119, 255, 0.16);
-      --chip-bg: rgba(181, 104, 255, 0.12);
-      --chip-text: #efceff;
-      --title-grad: linear-gradient(90deg, #8e7cff 0%, #c86fff 52%, #ff7fb4 100%);
-      --link-color: #f2dcff;
-      --line-accent: linear-gradient(90deg, rgba(0,0,0,0), #cf74ff, rgba(0,0,0,0));
-    }
-
-    .theme-notes {
-      --bg-start: #0e0710;
-      --bg-mid: #341027;
-      --bg-end: #6e1b44;
-      --orb-a: rgba(255, 149, 69, 0.12);
-      --orb-b: rgba(255, 86, 145, 0.10);
-      --card-start: rgba(117, 45, 73, 0.36);
-      --card-end: rgba(72, 21, 45, 0.18);
-      --card-border: rgba(255, 146, 92, 0.16);
-      --chip-bg: rgba(255, 133, 71, 0.12);
-      --chip-text: #ffd4bf;
-      --title-grad: linear-gradient(90deg, #ffcc4d 0%, #ff9047 45%, #ff63a3 100%);
-      --link-color: #ffe2cf;
-      --line-accent: linear-gradient(90deg, rgba(0,0,0,0), #ff8f4d, rgba(0,0,0,0));
-    }
-
-    .theme-contact {
-      --bg-start: #071019;
-      --bg-mid: #0d1f33;
-      --bg-end: #163d52;
-      --orb-a: rgba(65, 216, 255, 0.10);
-      --orb-b: rgba(47, 233, 160, 0.10);
-      --card-start: rgba(18, 57, 79, 0.40);
-      --card-end: rgba(12, 34, 53, 0.18);
-      --card-border: rgba(77, 233, 198, 0.16);
-      --chip-bg: rgba(48, 222, 177, 0.12);
-      --chip-text: #bdfbe8;
-      --title-grad: linear-gradient(90deg, #49deff 0%, #44ffbf 100%);
-      --link-color: #cefff4;
-      --line-accent: linear-gradient(90deg, rgba(0,0,0,0), #44ffbf, rgba(0,0,0,0));
-    }
-
-    .hero-wrap,
     .hero-main,
     .hero-side,
     .section-card,
@@ -293,167 +144,49 @@
     .project-card,
     .article-card,
     .contact-card,
-    .command-panel,
-    .notice-box,
-    .feature-row {
-      background: linear-gradient(180deg, var(--card-start), var(--card-end));
-      border: 1px solid var(--card-border);
+    .command-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-    }
-
-    .notice-line {
-      text-align: center;
-      font-size: 14px;
-      color: rgba(255,255,255,0.92);
-      margin-bottom: 18px;
-      font-weight: 600;
-    }
-
-    .hero-wrap {
-      border-radius: 34px;
-      padding: 24px;
-    }
-
-    .notice-box {
-      width: min(100%, 720px);
-      margin: 0 auto 28px;
-      border-radius: 24px;
-      padding: 16px 22px;
-      text-align: left;
-      color: rgba(248,244,255,0.92);
-    }
-
-    .notice-box ul {
-      margin: 0;
-      padding-left: 22px;
-    }
-
-    .hero-pill {
-      width: fit-content;
-      margin: 0 auto 26px;
-      padding: 12px 28px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(33, 214, 119, 0.92), rgba(18, 159, 121, 0.92));
-      color: #f7fffb;
-      font-weight: 800;
-      box-shadow: 0 10px 26px rgba(33, 214, 119, 0.24);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
-      gap: 24px;
-      align-items: stretch;
+      backdrop-filter: blur(10px);
     }
 
     .hero-main {
-      border-radius: var(--radius-xl);
+      border-radius: 32px;
       padding: 42px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-main::before {
-      content: "";
-      position: absolute;
-      right: -90px;
-      bottom: -120px;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 130, 70, 0.22), transparent 70%);
-      pointer-events: none;
     }
 
     .hero-tag {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: #fff;
+      border: 1px solid var(--line);
       border-radius: 999px;
       padding: 8px 14px;
-      color: rgba(250,248,255,0.95);
+      color: var(--muted);
       font-size: 13px;
       margin-bottom: 22px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(42px, 7vw, 76px);
+      font-size: clamp(42px, 7vw, 72px);
       line-height: 0.98;
-      letter-spacing: -0.06em;
-    }
-
-    .hero-title .line-1,
-    .hero-title .line-2,
-    .section-heading h3 {
-      display: block;
-      background: var(--title-grad);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-title .line-2 {
-      margin-top: 8px;
-      background: linear-gradient(90deg, #ffd84b 0%, #ff9539 45%, #ff5c7f 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      letter-spacing: -0.055em;
     }
 
     .hero-subtitle {
-      margin: 24px 0 0;
+      margin: 22px 0 0;
       max-width: 760px;
-      color: rgba(248,244,255,0.92);
-      font-size: clamp(16px, 2vw, 21px);
-      font-weight: 600;
-    }
-
-    .hero-description {
-      margin: 12px 0 0;
       color: var(--muted);
-      font-size: 18px;
+      font-size: clamp(16px, 2vw, 20px);
     }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .hero-stat {
-      padding: 18px 14px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
-      text-align: center;
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-stat strong {
-      display: block;
-      font-size: 24px;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .hero-stat:nth-child(1) { border-color: rgba(45, 216, 129, 0.34); }
-    .hero-stat:nth-child(1) strong { color: #4cf39c; }
-    .hero-stat:nth-child(2) { border-color: rgba(90, 171, 255, 0.34); }
-    .hero-stat:nth-child(2) strong { color: #67bfff; }
-    .hero-stat:nth-child(3) { border-color: rgba(194, 118, 255, 0.34); }
-    .hero-stat:nth-child(3) strong { color: #d189ff; }
-    .hero-stat:nth-child(4) { border-color: rgba(255, 183, 61, 0.34); }
-    .hero-stat:nth-child(4) strong { color: #ffc84d; }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 12px;
       margin-top: 30px;
     }
 
@@ -461,33 +194,30 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      min-height: 54px;
-      padding: 0 24px;
-      border-radius: 18px;
-      font-weight: 800;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-      border: 1px solid transparent;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 16px;
+      font-weight: 600;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
     }
 
-    .btn:hover { transform: translateY(-2px); }
+    .btn:hover { transform: translateY(-1px); }
 
     .btn-primary {
-      background: linear-gradient(90deg, #22d96f, #10a66f);
-      color: #ffffff;
-      border-color: rgba(34, 217, 111, 0.28);
-      box-shadow: 0 12px 28px rgba(34, 217, 111, 0.24);
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
     }
 
     .btn-secondary {
-      background: linear-gradient(90deg, rgba(74, 135, 255, 0.95), rgba(154, 73, 255, 0.95));
-      color: #ffffff;
-      border-color: rgba(100, 188, 255, 0.24);
-      box-shadow: 0 12px 28px rgba(94, 110, 255, 0.22);
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--line);
     }
 
     .hero-side {
-      border-radius: var(--radius-xl);
+      border-radius: 32px;
       padding: 28px;
       display: flex;
       flex-direction: column;
@@ -502,22 +232,21 @@
     }
 
     .avatar {
-      width: 74px;
-      height: 74px;
+      width: 72px;
+      height: 72px;
       border-radius: 24px;
-      background: linear-gradient(135deg, #38d3ff, #8c62ff);
-      color: #ffffff;
+      background: linear-gradient(135deg, #151515, #6a6a6a);
+      color: #fff;
       display: grid;
       place-items: center;
-      font-size: 28px;
-      font-weight: 800;
-      box-shadow: 0 12px 28px rgba(74, 135, 255, 0.24);
+      font-size: 26px;
+      font-weight: 700;
       flex: none;
     }
 
     .profile h2 {
       margin: 0 0 4px;
-      font-size: 24px;
+      font-size: 22px;
       letter-spacing: -0.03em;
     }
 
@@ -531,8 +260,8 @@
 
     .stat {
       border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      background: #fff;
       padding: 16px;
     }
 
@@ -543,35 +272,26 @@
       margin-bottom: 4px;
     }
 
-    .stats .stat:nth-child(1) strong { color: #4cf39c; }
-    .stats .stat:nth-child(2) strong { color: #67bfff; }
-    .stats .stat:nth-child(3) strong { color: #d189ff; }
-    .stats .stat:nth-child(4) strong { color: #ffc84d; }
+    .section { padding: 22px 0; }
 
     .section-heading {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
     }
 
     .section-heading h3 {
       margin: 0;
-      font-size: clamp(30px, 4.2vw, 54px);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-    }
-
-    .section-subtitle {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 18px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
     }
 
     .section-card {
-      border-radius: var(--radius-xl);
-      padding: 30px;
+      border-radius: var(--radius-lg);
+      padding: 28px;
     }
 
     .routes {
@@ -581,30 +301,14 @@
     }
 
     .route-card {
+      background: #fff;
+      border: 1px solid var(--line);
       border-radius: 24px;
       padding: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      border: 1px solid var(--card-border);
       min-height: 240px;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
-    }
-
-    .theme-about .routes {
-      gap: 22px;
-    }
-
-    .theme-about .route-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
-      border: 1px solid rgba(77, 220, 255, 0.14);
-      box-shadow: none;
-      min-height: unset;
-    }
-
-    .theme-about .route-card:hover {
-      border-color: rgba(77, 220, 255, 0.24);
     }
 
     .route-label,
@@ -612,36 +316,32 @@
       display: inline-flex;
       align-items: center;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: var(--chip-bg);
-      color: var(--chip-text);
+      border: 1px solid var(--line);
+      background: var(--soft);
+      color: #4f4f4f;
       padding: 6px 12px;
       font-size: 12px;
       width: fit-content;
-      font-weight: 700;
     }
 
     .route-card h4,
-    .timeline-item h4,
     .project-card h4,
     .article-card h4,
-    .contact-card h4,
-    .feature-copy h4 {
+    .timeline-item h4,
+    .contact-card h4 {
       margin: 0;
-      font-size: 24px;
-      line-height: 1.12;
+      font-size: 22px;
+      line-height: 1.15;
       letter-spacing: -0.03em;
-      color: #ffffff;
     }
 
     .route-card p,
-    .timeline-item p,
     .project-card p,
     .article-card p,
-    .contact-card p,
-    .feature-copy p {
+    .timeline-item p,
+    .contact-card p {
       margin: 0;
-      color: rgba(244, 238, 255, 0.90);
+      color: var(--muted);
     }
 
     .route-steps {
@@ -656,8 +356,8 @@
     }
 
     .timeline-item {
-      border-radius: 24px;
-      padding: 24px 26px;
+      border-radius: 22px;
+      padding: 22px 24px;
       display: grid;
       grid-template-columns: 84px 1fr;
       gap: 18px;
@@ -668,88 +368,12 @@
       width: 64px;
       height: 64px;
       border-radius: 20px;
-      background: linear-gradient(135deg, rgba(64, 209, 255, 0.24), rgba(111, 113, 255, 0.24));
-      border: 1px solid rgba(255,255,255,0.12);
+      background: #fff;
+      border: 1px solid var(--line);
       display: grid;
       place-items: center;
-      font-weight: 800;
+      font-weight: 700;
       font-size: 18px;
-      color: #ffffff;
-    }
-
-    .feature-grid {
-      display: grid;
-      gap: 26px;
-      margin-top: 28px;
-    }
-
-    .feature-row {
-      border-radius: var(--radius-xl);
-      padding: 28px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.95fr);
-      gap: 26px;
-      align-items: center;
-    }
-
-    .feature-row.reverse {
-      grid-template-columns: minmax(320px, 0.95fr) minmax(0, 1fr);
-    }
-
-    .feature-row.reverse .feature-media { order: 1; }
-    .feature-row.reverse .feature-copy { order: 2; }
-
-    .feature-icon {
-      width: 82px;
-      height: 82px;
-      border-radius: 24px;
-      display: grid;
-      place-items: center;
-      font-size: 34px;
-      margin-bottom: 18px;
-      color: #ffffff;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.22);
-    }
-
-    .theme-about .feature-icon { background: linear-gradient(135deg, #2add83, #10a66f); }
-    .theme-timeline .feature-icon { background: linear-gradient(135deg, #49d8ff, #4977ff); }
-    .theme-projects .feature-icon { background: linear-gradient(135deg, #b06cff, #ff5eb2); }
-    .theme-notes .feature-icon { background: linear-gradient(135deg, #ffb84a, #ff6b49); }
-    .theme-contact .feature-icon { background: linear-gradient(135deg, #49deff, #3ef0bb); }
-
-    .feature-tags {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 18px;
-    }
-
-    .feature-media {
-      border-radius: 26px;
-      min-height: 270px;
-      border: 1px solid rgba(255,255,255,0.10);
-      overflow: hidden;
-      position: relative;
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 14px 30px rgba(0,0,0,0.22);
-    }
-
-    .feature-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .feature-media.placeholder::before {
-      content: "Coming Soon";
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      color: rgba(255,255,255,0.56);
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
     }
 
     .project-grid,
@@ -781,38 +405,28 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-weight: 700;
-      color: var(--link-color);
+      font-weight: 600;
     }
 
-    .link-row:hover {
-      color: #ffffff;
-      text-shadow: 0 0 18px rgba(255,255,255,0.12);
-    }
-
-    .footer {
-      background: linear-gradient(135deg, #050a16 0%, #0c1631 54%, #14284a 100%);
-      padding: 56px 0 72px;
-    }
+    .footer { padding: 52px 0 70px; }
 
     .footer-card {
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(90, 220, 255, 0.14);
-      background: linear-gradient(180deg, rgba(19, 52, 74, 0.52), rgba(16, 28, 50, 0.28));
-      padding: 30px;
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.78);
+      padding: 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
       box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
     }
 
     .command-panel-wrap {
       position: fixed;
       inset: 0;
-      background: rgba(6, 8, 18, 0.56);
-      backdrop-filter: blur(8px);
+      background: rgba(17,17,17,0.2);
+      backdrop-filter: blur(6px);
       display: none;
       align-items: flex-start;
       justify-content: center;
@@ -826,13 +440,12 @@
       width: min(720px, calc(100% - 24px));
       border-radius: 26px;
       overflow: hidden;
-      background: linear-gradient(180deg, rgba(53, 78, 140, 0.96), rgba(84, 46, 138, 0.96));
-      border: 1px solid rgba(125, 214, 255, 0.16);
+      background: rgba(255,255,255,0.94);
     }
 
     .command-head {
       padding: 18px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
+      border-bottom: 1px solid var(--line);
     }
 
     .command-head input {
@@ -843,8 +456,6 @@
       font-size: 16px;
       color: var(--text);
     }
-
-    .command-head input::placeholder { color: var(--muted); }
 
     .command-list {
       padding: 10px;
@@ -860,49 +471,46 @@
       padding: 14px 14px;
       border-radius: 16px;
       cursor: pointer;
-      transition: background 0.18s ease, transform 0.18s ease;
+      transition: background 0.18s ease;
     }
 
-    .command-item:hover {
-      background: rgba(255,255,255,0.08);
-      transform: translateY(-1px);
-    }
-
+    .command-item:hover { background: var(--soft); }
     .command-item small { color: var(--muted); }
 
-    code {
-      background: rgba(255,255,255,0.08);
-      padding: 3px 8px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.10);
-      color: #ffffff;
-    }
-
-    @media (max-width: 1080px) {
+    @media (max-width: 980px) {
       .hero-grid,
       .routes,
       .project-grid,
       .article-grid,
-      .contact-grid,
-      .feature-row,
-      .feature-row.reverse {
+      .contact-grid {
         grid-template-columns: 1fr;
       }
 
-      .feature-row.reverse .feature-media,
-      .feature-row.reverse .feature-copy {
-        order: initial;
+      .timeline-item {
+        grid-template-columns: 1fr;
       }
 
-      .hero-stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .topbar {
+        flex-wrap: wrap;
+        padding: 12px 0;
+      }
+
+      .footer-card {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
 
     @media (max-width: 720px) {
-      .topbar {
-        flex-wrap: wrap;
-        padding: 12px 0;
+      .hero-main,
+      .hero-side,
+      .section-card,
+      .project-card,
+      .article-card,
+      .contact-card,
+      .timeline-item,
+      .footer-card {
+        padding: 22px;
       }
 
       .nav {
@@ -915,200 +523,176 @@
         width: 100%;
         justify-content: space-between;
       }
-
-      .hero-main,
-      .hero-side,
-      .section-card,
-      .feature-row,
-      .project-card,
-      .article-card,
-      .contact-card,
-      .timeline-item,
-      .footer-card,
-      .notice-box {
-        padding: 22px;
-      }
-
-      .hero-stats {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .timeline-item {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: clamp(36px, 10vw, 58px);
-      }
     }
   </style>
+
+  <style>
+    mjx-container[jax="SVG"] {
+      max-width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    mjx-container[jax="SVG"][display="true"] {
+      margin: 1rem 0 !important;
+      padding: 0.2rem 0;
+    }
+  </style>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        tags: 'ams'
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+
+    window.renderMathIn = function (root) {
+      if (window.MathJax && MathJax.typesetPromise) {
+        return MathJax.typesetPromise(root ? [root] : undefined);
+      }
+      return Promise.resolve();
+    };
+  </script>
+  <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
   <header class="topbar-wrap">
     <div class="container topbar">
       <a class="brand" href="#top">
         <div class="brand-mark">ZF</div>
-        <div>Zhoufj8</div>
+        <div>
+          <div>Zhoufj8</div>
+        </div>
       </a>
 
       <nav class="nav" aria-label="Main Navigation">
-        <a class="active" href="#top">首页</a>
-        <a href="#about">关于</a>
-        <a href="#projects">方向</a>
-        <a href="#notes">笔记</a>
-        <a href="#contact">联系</a>
+        <a href="#about">鍏充簬</a>
+        <a href="#projects">鏂瑰悜</a>
+        <a href="#notes">绗旇</a>
+        <a href="#timeline">璺緞</a>
+        <a href="#contact">鑱旂郴</a>
       </nav>
 
-      <button class="kbd-search" id="openCommand" aria-label="打开快速导航">
-        <span>搜索板块 / 内容 / 页面</span>
+      <button class="kbd-search" id="openCommand" aria-label="鎵撳紑蹇€熷鑸?>
+        <span>鎼滅储绔犺妭 / 鏂瑰悜 / 椤甸潰</span>
         <span>K</span>
       </button>
     </div>
   </header>
 
-  <main>
-    <section class="section theme-hero" id="top">
-      <div class="container">
-        <div class="notice-line">通知：主页持续更新中，后续会逐步补充项目、研究笔记和公开实验记录。</div>
-        <div class="notice-box">
-          <ul>
-            <li>最近在梳理量化学习路径与第一个回测练习项目。</li>
-            <li>后续会逐步公开因子研究笔记、实验总结与工具脚本。</li>
-            <li>欢迎通过 GitHub 和邮箱交流学习、研究与合作话题。</li>
-          </ul>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-main">
+          <div class="hero-tag">涓汉涓婚〉 / GitHub Pages / Quant Learning Journey</div>
+          <h1>淇濇寔鐮旂┒鐑儏锛屾參鎱㈡惌寤鸿嚜宸辩殑閲忓寲涓栫晫銆?/h1>
+          <p class="hero-subtitle">
+            鎴戞槸 Zhoufj8锛屼竴鍚嶉噺鍖栫埍濂借€呫€?            杩欓噷浼氶€愭璁板綍鎴戠殑瀛︿範璺緞銆佺爺绌跺叴瓒ｃ€侀槄璇荤瑪璁帮紝浠ュ強鏈潵鍑嗗鍏紑鐨勯噺鍖栭」鐩笌瀹為獙銆?          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">鏌ョ湅鏂瑰悜</a>
+            <a class="btn btn-secondary" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn btn-secondary" href="#contact">鑱旂郴鎴?/a>
+          </div>
         </div>
 
-        <div class="hero-pill">🚀 个人主页持续迭代中，欢迎查看与交流</div>
-
-        <div class="hero-wrap">
-          <div class="hero-grid">
-            <div class="hero-main">
-              <div class="hero-tag">Personal Homepage / GitHub Pages / Quant Learning Journey</div>
-              <h1 class="hero-title">
-                <span class="line-1">量化学习，个人研究主页</span>
-                <span class="line-2">慢慢构建自己的策略世界</span>
-              </h1>
-              <p class="hero-subtitle">我是 Zhoufj8，一名量化爱好者。</p>
-              <p class="hero-description">
-                这里会逐步记录我的学习路径、研究兴趣、阅读笔记，以及未来准备公开的量化项目与实验。
-              </p>
-
-              <div class="hero-stats">
-                <div class="hero-stat">
-                  <strong>90%</strong>
-                  <span class="muted">学习热情在线</span>
-                </div>
-                <div class="hero-stat">
-                  <strong>持续更新</strong>
-                  <span class="muted">研究与笔记整理</span>
-                </div>
-                <div class="hero-stat">
-                  <strong>0 → N</strong>
-                  <span class="muted">项目逐步上线</span>
-                </div>
-                <div class="hero-stat">
-                  <strong>长期主义</strong>
-                  <span class="muted">量化成长路径</span>
-                </div>
-              </div>
-
-              <div class="hero-actions">
-                <a class="btn btn-primary" href="#projects">🚀 查看方向</a>
-                <a class="btn btn-secondary" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">📘 GitHub</a>
-              </div>
+        <aside class="hero-side">
+          <div class="profile">
+            <div class="avatar">Z</div>
+            <div>
+              <h2>Zhoufj8</h2>
+              <div class="muted">Quant Enthusiast / Learner / Builder in Progress</div>
             </div>
+          </div>
 
-            <aside class="hero-side">
-              <div class="profile">
-                <div class="avatar">Z</div>
-                <div>
-                  <h2>Zhoufj8</h2>
-                  <div class="muted">Quant Enthusiast / Learner / Builder in Progress</div>
-                </div>
-              </div>
+          <p class="muted">
+            浣犲彲浠ユ妸杩欓噷褰撲綔鎴戠殑鍏紑瀛︿範绌洪棿锛氭垜浼氭寔缁暣鐞嗛噺鍖栫浉鍏崇殑鎬濊€冦€佸涔犺褰曘€佸疄楠屾柟鍚戯紝浠ュ強涔嬪悗閫愭涓婄嚎鐨勪釜浜洪」鐩€?          </p>
 
-              <p class="muted">
-                你可以把这里当作我的公开学习空间：我会持续整理量化相关的思考、学习记录、实验方向，以及之后逐步上线的个人项目。
-              </p>
+          <div class="stats">
+            <div class="stat">
+              <strong>0 鈫?N</strong>
+              <span class="muted">椤圭洰绛瑰涓?/span>
+            </div>
+            <div class="stat">
+              <strong>鎸佺画鏇存柊</strong>
+              <span class="muted">瀛︿範绗旇</span>
+            </div>
+            <div class="stat">
+              <strong>闀挎湡涓讳箟</strong>
+              <span class="muted">閲忓寲瀛︿範璺緞</span>
+            </div>
+            <div class="stat">
+              <strong>Quant</strong>
+              <span class="muted">鏁版嵁 / 绛栫暐 / 鍥炴祴</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-              <div class="stats">
-                <div class="stat">
-                  <strong>Quant</strong>
-                  <span class="muted">数据 / 策略 / 回测</span>
-                </div>
-                <div class="stat">
-                  <strong>Python</strong>
-                  <span class="muted">脚本 / 分析 / 工具</span>
-                </div>
-                <div class="stat">
-                  <strong>Notes</strong>
-                  <span class="muted">阅读 / 复盘 / 总结</span>
-                </div>
-                <div class="stat">
-                  <strong>Build</strong>
-                  <span class="muted">把想法变成代码</span>
-                </div>
-              </div>
-            </aside>
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="muted">Start Here</div>
+            <h3>30 绉掍簡瑙ｆ垜鐜板湪鍦ㄥ仛浠€涔?/h3>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="routes">
+            <article class="route-card">
+              <div class="route-label">鐮旂┒鏂瑰悜</div>
+              <h4>閲忓寲鐮旂┒涓庣瓥鐣ュ涔?/h4>
+              <p>鐩墠閲嶇偣鍏虫敞鍥犲瓙鐮旂┒銆佺瓥鐣ユ瀯寤恒€佸洖娴嬪垎鏋愪笌鏁版嵁澶勭悊锛屽笇鏈涘厛鎵撶墷鐮旂┒鍩烘湰鍔熴€?/p>
+              <ol class="route-steps">
+                <li>鐞嗚В甯歌鍥犲瓙涓庣瓥鐣ユ鏋?/li>
+                <li>缁冧範鏁版嵁鍒嗘瀽涓庡洖娴嬫柟娉?/li>
+              </ol>
+              <a class="link-row" href="#projects">鏌ョ湅鏂瑰悜 鈫?/a>
+            </article>
+
+            <article class="route-card">
+              <div class="route-label">宸ュ叿绉疮</div>
+              <h4>缂栫▼鑳藉姏涓庣爺绌跺伐鍏?/h4>
+              <p>閫氳繃 Python 鍜岀浉鍏冲伐鍏锋彁鍗囩爺绌舵晥鐜囷紝閫愭鎼缓閫傚悎鑷繁鐨勬暟鎹鐞嗐€佸疄楠岃褰曞拰鍒嗘瀽娴佺▼銆?/p>
+              <ol class="route-steps">
+                <li>鏋勫缓鍙鐜扮殑鐮旂┒鑴氭湰</li>
+                <li>娌夋穩鑷繁鐨勯噺鍖栧伐鍏风</li>
+              </ol>
+              <a class="link-row" href="#timeline">鏌ョ湅璺緞 鈫?/a>
+            </article>
+
+            <article class="route-card">
+              <div class="route-label">杈撳嚭娌夋穩</div>
+              <h4>璁板綍杩囩▼锛屾寔缁緭鍑?/h4>
+              <p>鎴戝笇鏈涙妸瀛︿範杩囩▼鍏紑璁板綍涓嬫潵锛屽寘鎷槄璇荤瑪璁般€佺爺绌跺績寰楀拰涔嬪悗閫愭鎴愬瀷鐨勯」鐩鐩樸€?/p>
+              <ol class="route-steps">
+                <li>鏁寸悊瀛︿範绗旇涓庢€荤粨</li>
+                <li>鎶婃兂娉曢€愭鍐欐垚鏂囩珷</li>
+              </ol>
+              <a class="link-row" href="#notes">闃呰绗旇 鈫?/a>
+            </article>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section theme-about" id="about">
+    <section class="section" id="timeline">
       <div class="container">
-        <div class="section-divider"></div>
         <div class="section-heading">
           <div>
-            <h3>现在的重点与方向</h3>
-            <div class="section-subtitle">每个阶段都对应不同的学习目标、工具积累和输出方式。</div>
-          </div>
-        </div>
-
-        <div class="routes">
-          <article class="route-card">
-            <div class="route-label">研究方向</div>
-            <h4>量化研究与策略学习</h4>
-            <p>目前重点关注因子研究、策略构建、回测分析与数据处理，希望先打牢研究基本功。</p>
-            <ol class="route-steps">
-              <li>理解常见因子与策略框架</li>
-              <li>练习数据分析与回测方法</li>
-            </ol>
-            <a class="link-row" href="#projects">查看方向 →</a>
-          </article>
-
-          <article class="route-card">
-            <div class="route-label">工具积累</div>
-            <h4>编程能力与研究工具</h4>
-            <p>通过 Python 和相关工具提升研究效率，逐步搭建适合自己的数据处理、实验记录和分析流程。</p>
-            <ol class="route-steps">
-              <li>构建可复现的研究脚本</li>
-              <li>沉淀自己的量化工具箱</li>
-            </ol>
-            <a class="link-row" href="#timeline">查看路径 →</a>
-          </article>
-
-          <article class="route-card">
-            <div class="route-label">输出沉淀</div>
-            <h4>记录过程，持续输出</h4>
-            <p>我希望把学习过程公开记录下来，包括阅读笔记、研究心得和之后逐步成型的项目复盘。</p>
-            <ol class="route-steps">
-              <li>整理学习笔记与总结</li>
-              <li>把想法逐步写成文章</li>
-            </ol>
-            <a class="link-row" href="#notes">阅读笔记 →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section theme-timeline" id="timeline">
-      <div class="container">
-        <div class="section-divider"></div>
-        <div class="section-heading">
-          <div>
-            <h3>我正在形成的学习与研究路径</h3>
-            <div class="section-subtitle">把问题理解、实验验证、代码沉淀和公开记录连成一条清晰主链路。</div>
+            <div class="muted">Learning Path</div>
+            <h3>鎴戞鍦ㄥ舰鎴愮殑瀛︿範涓庣爺绌惰矾寰?/h3>
           </div>
         </div>
 
@@ -1117,8 +701,8 @@
             <div class="timeline-index">1</div>
             <div>
               <div class="chip">Understand</div>
-              <h4>先理解问题，再开始动手</h4>
-              <p>先理解一个问题为什么值得研究，再梳理需要什么数据、指标和基础知识，避免一开始就陷入无效实现。</p>
+              <h4>鍏堢悊瑙ｉ棶棰橈紝鍐嶅紑濮嬪姩鎵?/h4>
+              <p>鍏堢悊瑙ｄ竴涓棶棰樹负浠€涔堝€煎緱鐮旂┒锛屽啀姊崇悊闇€瑕佷粈涔堟暟鎹€佹寚鏍囧拰鍩虹鐭ヨ瘑锛岄伩鍏嶄竴寮€濮嬪氨闄峰叆鏃犳晥瀹炵幇銆?/p>
             </div>
           </article>
 
@@ -1126,8 +710,8 @@
             <div class="timeline-index">2</div>
             <div>
               <div class="chip">Experiment</div>
-              <h4>把想法变成可验证的小实验</h4>
-              <p>把学习到的想法转成可以验证的小实验，例如简单策略、基础特征、回测指标与结果对比。</p>
+              <h4>鎶婃兂娉曞彉鎴愬彲楠岃瘉鐨勫皬瀹為獙</h4>
+              <p>鎶婂涔犲埌鐨勬兂娉曡浆鎴愬彲浠ラ獙璇佺殑灏忓疄楠岋紝渚嬪绠€鍗曠瓥鐣ャ€佸熀纭€鐗瑰緛銆佸洖娴嬫寚鏍囦笌缁撴灉瀵规瘮銆?/p>
             </div>
           </article>
 
@@ -1135,8 +719,8 @@
             <div class="timeline-index">3</div>
             <div>
               <div class="chip">Build</div>
-              <h4>把练习整理成可复用的代码</h4>
-              <p>把零散练习整理成可复现的代码和脚本，让每次尝试都能积累成之后可复用的研究资产。</p>
+              <h4>鎶婄粌涔犳暣鐞嗘垚鍙鐢ㄧ殑浠ｇ爜</h4>
+              <p>鎶婇浂鏁ｇ粌涔犳暣鐞嗘垚鍙鐜扮殑浠ｇ爜鍜岃剼鏈紝璁╂瘡娆″皾璇曢兘鑳界Н绱垚涔嬪悗鍙鐢ㄧ殑鐮旂┒璧勪骇銆?/p>
             </div>
           </article>
 
@@ -1144,190 +728,127 @@
             <div class="timeline-index">4</div>
             <div>
               <div class="chip">Share</div>
-              <h4>通过主页和笔记记录成长</h4>
-              <p>通过主页、笔记和未来的项目页面记录成长路径，让学习不只是输入，也变成对外可见的沉淀。</p>
+              <h4>閫氳繃涓婚〉鍜岀瑪璁拌褰曟垚闀?/h4>
+              <p>閫氳繃涓婚〉銆佺瑪璁板拰鏈潵鐨勯」鐩〉闈㈣褰曟垚闀胯矾寰勶紝璁╁涔犱笉鍙槸杈撳叆锛屼篃鍙樻垚瀵瑰鍙鐨勬矇娣€銆?/p>
             </div>
           </article>
-        </div>
-
-        <div class="feature-grid">
-          <div class="feature-row">
-            <div class="feature-copy">
-              <div class="feature-icon">⌘</div>
-              <h4>特色 2：把零散练习整理成系统流程</h4>
-              <p>答案不是一次次临时找出来，而是把实验、脚本、结果和复盘逐渐组织成可复用的研究工作流。</p>
-              <div class="feature-tags">
-                <span class="chip">脚本沉淀</span>
-                <span class="chip">研究流程</span>
-              </div>
-            </div>
-            <div class="feature-media placeholder"></div>
-          </div>
         </div>
       </div>
     </section>
 
-    <section class="section theme-projects" id="projects">
+    <section class="section" id="projects">
       <div class="container">
-        <div class="section-divider"></div>
         <div class="section-heading">
           <div>
-            <h3>正在准备的项目方向</h3>
-            <div class="section-subtitle">目前还在起步阶段，所以用“方向”和“准备中项目”来代替空白展示会更自然。</div>
+            <div class="muted">In Progress</div>
+            <h3>姝ｅ湪鍑嗗鐨勯」鐩柟鍚?/h3>
           </div>
         </div>
 
         <div class="project-grid">
           <article class="project-card">
             <div class="chip">Preparing</div>
-            <h4>回测练习项目</h4>
-            <p>计划从一个小型量化回测项目开始，练习数据读取、信号生成、收益统计与基础绩效分析。</p>
+            <h4>鍥炴祴缁冧範椤圭洰</h4>
+            <p>璁″垝浠庝竴涓皬鍨嬮噺鍖栧洖娴嬮」鐩紑濮嬶紝缁冧範鏁版嵁璇诲彇銆佷俊鍙风敓鎴愩€佹敹鐩婄粺璁′笌鍩虹缁╂晥鍒嗘瀽銆?/p>
             <div class="project-meta">
               <span class="chip">Python</span>
               <span class="chip">Backtest</span>
               <span class="chip">Learning</span>
             </div>
-            <a class="link-row" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">查看主页 →</a>
+            <a class="link-row" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">鏌ョ湅涓婚〉 鈫?/a>
           </article>
 
           <article class="project-card">
             <div class="chip">Preparing</div>
-            <h4>因子研究笔记</h4>
-            <p>计划整理常见因子、评价方式和实验心得，把学习过程沉淀成结构化的研究笔记。</p>
+            <h4>鍥犲瓙鐮旂┒绗旇</h4>
+            <p>璁″垝鏁寸悊甯歌鍥犲瓙銆佽瘎浠锋柟寮忓拰瀹為獙蹇冨緱锛屾妸瀛︿範杩囩▼娌夋穩鎴愮粨鏋勫寲鐨勭爺绌剁瑪璁般€?/p>
             <div class="project-meta">
               <span class="chip">Factor</span>
               <span class="chip">Notes</span>
               <span class="chip">Research</span>
             </div>
-            <a class="link-row" href="#notes">查看内容 →</a>
+            <a class="link-row" href="#notes">鏌ョ湅鍐呭 鈫?/a>
           </article>
 
           <article class="project-card">
             <div class="chip">Preparing</div>
-            <h4>量化工具箱</h4>
-            <p>未来准备逐步积累一些自己常用的小工具，例如数据清洗、指标计算和实验结果可视化脚本。</p>
+            <h4>閲忓寲宸ュ叿绠?/h4>
+            <p>鏈潵鍑嗗閫愭绉疮涓€浜涜嚜宸卞父鐢ㄧ殑灏忓伐鍏凤紝渚嬪鏁版嵁娓呮礂銆佹寚鏍囪绠楀拰瀹為獙缁撴灉鍙鍖栬剼鏈€?/p>
             <div class="project-meta">
               <span class="chip">Tools</span>
               <span class="chip">Utility</span>
               <span class="chip">Workflow</span>
             </div>
-            <a class="link-row" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">未来更新 →</a>
+            <a class="link-row" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">鏈潵鏇存柊 鈫?/a>
           </article>
-        </div>
-
-        <div class="feature-grid">
-          <div class="feature-row reverse">
-            <div class="feature-copy">
-              <div class="feature-icon">⚡</div>
-              <h4>特色 3：把方向先讲清楚，再让项目慢慢长出来</h4>
-              <p>在还没有很多公开项目时，用“项目方向 + 筹备中状态 + 未来计划”去承接页面，会比硬塞占位项目更真实。</p>
-              <div class="feature-tags">
-                <span class="chip">准备中</span>
-                <span class="chip">长期更新</span>
-              </div>
-            </div>
-            <div class="feature-media placeholder"></div>
-          </div>
         </div>
       </div>
     </section>
 
-    <section class="section theme-notes" id="notes">
+    <section class="section" id="notes">
       <div class="container">
-        <div class="section-divider"></div>
         <div class="section-heading">
           <div>
-            <h3>准备陆续整理的内容</h3>
-            <div class="section-subtitle">不同板块可以有不同的情绪：这里更适合偏暖色、偏写作和输出感的渐变。</div>
+            <div class="muted">Notes & Essays</div>
+            <h3>鍑嗗闄嗙画鏁寸悊鐨勫唴瀹?/h3>
           </div>
         </div>
 
         <div class="article-grid">
           <article class="article-card">
             <div class="chip">Essay</div>
-            <h4>我为什么开始认真学习量化</h4>
-            <p>记录自己进入量化领域的动机、兴趣来源，以及希望长期投入这个方向的原因。</p>
-            <a class="link-row" href="#">未来补充 →</a>
+            <h4>鎴戜负浠€涔堝紑濮嬭鐪熷涔犻噺鍖?/h4>
+            <p>璁板綍鑷繁杩涘叆閲忓寲棰嗗煙鐨勫姩鏈恒€佸叴瓒ｆ潵婧愶紝浠ュ強甯屾湜闀挎湡鎶曞叆杩欎釜鏂瑰悜鐨勫師鍥犮€?/p>
+            <a class="link-row" href="#">鏈潵琛ュ厖 鈫?/a>
           </article>
 
           <article class="article-card">
             <div class="chip">Technical Note</div>
-            <h4>回测学习中的几个基础问题</h4>
-            <p>整理自己在学习过程中反复遇到的概念，比如收益计算、滑点、手续费与策略评价指标。</p>
-            <a class="link-row" href="#">未来补充 →</a>
+            <h4>鍥炴祴瀛︿範涓殑鍑犱釜鍩虹闂</h4>
+            <p>鏁寸悊鑷繁鍦ㄥ涔犺繃绋嬩腑鍙嶅閬囧埌鐨勬蹇碉紝姣斿鏀剁泭璁＄畻銆佹粦鐐广€佹墜缁垂涓庣瓥鐣ヨ瘎浠锋寚鏍囥€?/p>
+            <a class="link-row" href="#">鏈潵琛ュ厖 鈫?/a>
           </article>
 
           <article class="article-card">
             <div class="chip">Roadmap</div>
-            <h4>未来准备公开的第一个项目会是什么</h4>
-            <p>先给自己立一个公开目标：从最简单、最可完成的项目开始，把想法真正落地成代码。</p>
-            <a class="link-row" href="#">未来补充 →</a>
+            <h4>鏈潵鍑嗗鍏紑鐨勭涓€涓」鐩細鏄粈涔?/h4>
+            <p>鍏堢粰鑷繁绔嬩竴涓叕寮€鐩爣锛氫粠鏈€绠€鍗曘€佹渶鍙畬鎴愮殑椤圭洰寮€濮嬶紝鎶婃兂娉曠湡姝ｈ惤鍦版垚浠ｇ爜銆?/p>
+            <a class="link-row" href="#">鏈潵琛ュ厖 鈫?/a>
           </article>
-        </div>
-
-        <div class="feature-grid">
-          <div class="feature-row">
-            <div class="feature-copy">
-              <div class="feature-icon">🗂</div>
-              <h4>特色 4：内容输出会成为第二条主线</h4>
-              <p>除了项目本身，笔记、文章和思考记录也会构成这个主页的核心内容，所以这里用更偏暖色的板块做区分。</p>
-              <div class="feature-tags">
-                <span class="chip">技术写作</span>
-                <span class="chip">研究笔记</span>
-              </div>
-            </div>
-            <div class="feature-media placeholder"></div>
-          </div>
         </div>
       </div>
     </section>
 
-    <section class="section theme-contact" id="contact">
+    <section class="section" id="contact">
       <div class="container">
-        <div class="section-divider"></div>
         <div class="section-heading">
           <div>
-            <h3>继续交流</h3>
-            <div class="section-subtitle">联系区适合更清爽的蓝绿渐变，作为整站收尾会很舒服。</div>
+            <div class="muted">Contact</div>
+            <h3>缁х画浜ゆ祦</h3>
           </div>
         </div>
 
         <div class="contact-grid">
           <article class="contact-card">
             <div class="chip">GitHub</div>
-            <h4>代码与成长记录</h4>
-            <p>目前主要会放学习中的代码、之后逐步公开的练习项目，以及未来持续更新的个人仓库。</p>
-            <a class="link-row" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">github.com/Zhoufj8 →</a>
+            <h4>浠ｇ爜涓庢垚闀胯褰?/h4>
+            <p>鐩墠涓昏浼氭斁瀛︿範涓殑浠ｇ爜銆佷箣鍚庨€愭鍏紑鐨勭粌涔犻」鐩紝浠ュ強鏈潵鎸佺画鏇存柊鐨勪釜浜轰粨搴撱€?/p>
+            <a class="link-row" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">github.com/Zhoufj8 鈫?/a>
           </article>
 
           <article class="contact-card">
             <div class="chip">Email</div>
-            <h4>邮件联系</h4>
-            <p>适合合作沟通、研究交流、学习讨论或更正式的话题。</p>
-            <a class="link-row" href="mailto:Andrejzh8@gmail.com">Andrejzh8@gmail.com →</a>
+            <h4>閭欢鑱旂郴</h4>
+            <p>閫傚悎鍚堜綔娌熼€氥€佺爺绌朵氦娴併€佸涔犺璁烘垨鏇存寮忕殑璇濋銆?/p>
+            <a class="link-row" href="mailto:Andrejzh8@gmail.com">Andrejzh8@gmail.com 鈫?/a>
           </article>
 
           <article class="contact-card">
             <div class="chip">More</div>
-            <h4>更多内容</h4>
-            <p>这里后续可以补充博客、社交账号或笔记平台链接，作为你的公开输出入口。</p>
-            <a class="link-row" href="#">后续补充 →</a>
+            <h4>鏇村鍐呭</h4>
+            <p>杩欓噷鍚庣画鍙互琛ュ厖鍗氬銆佺ぞ浜よ处鍙锋垨绗旇骞冲彴閾炬帴锛屼綔涓轰綘鐨勫叕寮€杈撳嚭鍏ュ彛銆?/p>
+            <a class="link-row" href="#">鍚庣画琛ュ厖 鈫?/a>
           </article>
-        </div>
-
-        <div class="feature-grid">
-          <div class="feature-row reverse">
-            <div class="feature-copy">
-              <div class="feature-icon">✉</div>
-              <h4>特色 5：每一屏都可以有自己的渐变主题</h4>
-              <p>现在这版已经把首页、关于、路径、项目、笔记、联系分别切成不同的渐变风格，同时保持组件结构统一。</p>
-              <div class="feature-tags">
-                <span class="chip">分区渐变</span>
-                <span class="chip">统一语言</span>
-              </div>
-            </div>
-            <div class="feature-media placeholder"></div>
-          </div>
         </div>
       </div>
     </section>
@@ -1338,10 +859,10 @@
       <div class="footer-card">
         <div>
           <div class="chip">Personal Homepage</div>
-          <h4 style="margin: 14px 0 8px; font-size: 30px; letter-spacing: -0.04em; color: #ffffff;">把这里部署到 GitHub Pages，就可以直接上线。</h4>
-          <p class="muted" style="margin: 0;">建议仓库名使用 <code>Zhoufj8.github.io</code>，然后把这个文件命名为 <code>index.html</code>。</p>
+          <h4 style="margin: 14px 0 8px; font-size: 30px; letter-spacing: -0.04em;">鎶婅繖閲岄儴缃插埌 GitHub Pages锛屽氨鍙互鐩存帴涓婄嚎銆?/h4>
+          <p class="muted" style="margin: 0;">寤鸿浠撳簱鍚嶄娇鐢?<code>Zhoufj8.github.io</code>锛岀劧鍚庢妸杩欎釜鏂囦欢鍛藉悕涓?<code>index.html</code>銆?/p>
         </div>
-        <a class="btn btn-secondary" href="https://pages.github.com/" target="_blank" rel="noreferrer">查看部署说明</a>
+        <a class="btn btn-primary" href="https://pages.github.com/" target="_blank" rel="noreferrer">鏌ョ湅閮ㄧ讲璇存槑</a>
       </div>
     </div>
   </footer>
@@ -1349,43 +870,36 @@
   <div class="command-panel-wrap" id="commandPanel">
     <div class="command-panel">
       <div class="command-head">
-        <input id="commandInput" type="text" placeholder="输入关键词快速跳转，比如：方向 / 联系 / 笔记" />
+        <input id="commandInput" type="text" placeholder="杈撳叆鍏抽敭璇嶅揩閫熻烦杞紝姣斿锛氭柟鍚?/ 鑱旂郴 / 绗旇" />
       </div>
       <div class="command-list" id="commandList">
         <div class="command-item" data-target="#about">
           <div>
-            <strong>关于</strong><br />
-            <small>查看个人方向与板块结构</small>
+            <strong>鍏充簬</strong><br />
+            <small>鏌ョ湅涓汉浠嬬粛鍜屽涔犳柟鍚?/small>
           </div>
-          <span>↵</span>
-        </div>
-        <div class="command-item" data-target="#timeline">
-          <div>
-            <strong>路径</strong><br />
-            <small>查看学习与研究主链路</small>
-          </div>
-          <span>↵</span>
+          <span>鈫?/span>
         </div>
         <div class="command-item" data-target="#projects">
           <div>
-            <strong>方向</strong><br />
-            <small>查看正在准备的项目方向</small>
+            <strong>鏂瑰悜</strong><br />
+            <small>鏌ョ湅姝ｅ湪鍑嗗鐨勯」鐩柟鍚?/small>
           </div>
-          <span>↵</span>
+          <span>鈫?/span>
         </div>
         <div class="command-item" data-target="#notes">
           <div>
-            <strong>笔记</strong><br />
-            <small>查看未来准备整理的内容</small>
+            <strong>绗旇</strong><br />
+            <small>鏌ョ湅鏈潵鍑嗗鏁寸悊鐨勫唴瀹?/small>
           </div>
-          <span>↵</span>
+          <span>鈫?/span>
         </div>
         <div class="command-item" data-target="#contact">
           <div>
-            <strong>联系</strong><br />
-            <small>查看 GitHub 和邮箱</small>
+            <strong>鑱旂郴</strong><br />
+            <small>鏌ョ湅 GitHub 鍜岄偖绠?/small>
           </div>
-          <span>↵</span>
+          <span>鈫?/span>
         </div>
       </div>
     </div>
@@ -1444,3 +958,4 @@
   </script>
 </body>
 </html>
+
