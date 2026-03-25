@@ -1,242 +1,405 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zhoufj8 | Personal Site</title>
-  <meta name="description" content="Zhoufj8 的个人 GitHub 主页，展示量化学习路径、研究兴趣与未来项目计划。" />
+  <title>Zhoufj8 | GitHub Homepage</title>
+  <meta name="description" content="Zhoufj8 的 GitHub 个人主页：项目、笔记与联系入口。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #180a45;
-      --bg-deep: #10103f;
-      --bg-mid: #4c1788;
-      --bg-end: #83154f;
-      --panel: rgba(79, 110, 190, 0.28);
-      --panel-strong: rgba(70, 96, 170, 0.42);
-      --card: rgba(120, 74, 206, 0.16);
-      --text: #f7f2ff;
-      --muted: #d7c8ff;
-      --line: rgba(132, 212, 255, 0.24);
-      --soft: rgba(117, 160, 255, 0.14);
-      --cyan: #37c8ff;
-      --blue: #5a8cff;
-      --purple: #8b5cf6;
-      --pink: #ff5db1;
-      --orange: #ff8a3d;
-      --yellow: #ffc542;
-      --green: #2dd881;
-      --shadow: 0 18px 48px rgba(10, 8, 35, 0.32);
-      --glow-cyan: 0 0 24px rgba(55, 200, 255, 0.24);
-      --glow-pink: 0 0 28px rgba(255, 93, 177, 0.18);
-      --radius-lg: 24px;
+      --bg-deep: #030818;
+      --bg-mid: #111d46;
+      --bg-glow: #261b6a;
+      --bg-accent: #7f1f6f;
+      --text-main: #f3f6ff;
+      --text-muted: rgba(228, 236, 255, 0.84);
+      --line: rgba(110, 184, 255, 0.24);
+      --surface: rgba(30, 42, 92, 0.46);
+      --surface-strong: rgba(40, 58, 123, 0.56);
+      --cyan: #34d4ff;
+      --blue: #5e97ff;
+      --violet: #9472ff;
+      --pink: #ff69b8;
+      --green: #2fd07f;
+      --yellow: #ffd35e;
+      --orange: #ff9150;
+      --header-grad: linear-gradient(90deg, #2f2d8f 0%, #62208f 53%, #9a225e 100%);
+      --hero-grad: linear-gradient(92deg, #33d2ff 0%, #6f96ff 36%, #8f7bff 67%, #ff72ba 100%);
+      --max-width: 1180px;
+      --radius-lg: 28px;
       --radius-md: 18px;
       --radius-sm: 12px;
-      --max-width: 1180px;
+      --shadow-lg: 0 24px 48px rgba(6, 10, 32, 0.42);
+      --shadow-md: 0 14px 34px rgba(8, 12, 38, 0.36);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 18% 12%, rgba(55, 200, 255, 0.18), transparent 18%),
-        radial-gradient(circle at 80% 22%, rgba(255, 93, 177, 0.16), transparent 22%),
-        radial-gradient(circle at 55% 58%, rgba(138, 92, 246, 0.12), transparent 24%),
-        linear-gradient(135deg, var(--bg-deep) 0%, #2c2c92 22%, var(--bg-mid) 58%, var(--bg-end) 100%);
+      font-family: "Space Grotesk", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      color: var(--text-main);
       line-height: 1.65;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(52, 212, 255, 0.2), transparent 24%),
+        radial-gradient(circle at 84% 26%, rgba(255, 105, 184, 0.15), transparent 26%),
+        radial-gradient(circle at 60% 56%, rgba(120, 98, 255, 0.16), transparent 28%),
+        linear-gradient(140deg, var(--bg-deep) 0%, var(--bg-mid) 34%, var(--bg-glow) 68%, var(--bg-accent) 100%);
       min-height: 100vh;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .container {
       width: min(var(--max-width), calc(100% - 32px));
       margin: 0 auto;
     }
 
-    .topbar-wrap {
+    .site-header {
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 100;
       backdrop-filter: blur(14px);
-      background: linear-gradient(90deg, rgba(38, 43, 125, 0.84), rgba(93, 20, 121, 0.84), rgba(129, 20, 68, 0.84));
-      border-bottom: 1px solid rgba(128, 214, 255, 0.16);
-      box-shadow: 0 8px 30px rgba(15, 10, 45, 0.18);
+      box-shadow: 0 8px 26px rgba(7, 10, 30, 0.3);
     }
 
-    .topbar {
+    .announce-bar {
+      background: linear-gradient(90deg, rgba(29, 37, 99, 0.96), rgba(65, 28, 125, 0.96));
+      border-bottom: 1px solid rgba(112, 194, 255, 0.2);
+    }
+
+    .announce-inner {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: rgba(237, 244, 255, 0.92);
+    }
+
+    .announce-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: linear-gradient(90deg, rgba(41, 209, 129, 0.26), rgba(67, 145, 255, 0.26));
+      border: 1px solid rgba(94, 203, 255, 0.3);
+      white-space: nowrap;
+    }
+
+    .announce-inner p {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .announce-link {
+      color: #8fd6ff;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+
+    .announce-link:hover {
+      color: #ffffff;
+    }
+
+    .nav-shell {
+      background: var(--header-grad);
+      border-bottom: 1px solid rgba(120, 201, 255, 0.22);
+    }
+
+    .nav-inner {
+      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      min-height: 72px;
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      gap: 10px;
+      flex: none;
     }
 
     .brand-mark {
       width: 38px;
       height: 38px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #101010, #222222);
-      color: var(--yellow);
+      border-radius: 12px;
       display: grid;
       place-items: center;
-      font-size: 14px;
-      box-shadow: 0 0 0 1px rgba(255, 197, 66, 0.24), 0 10px 24px rgba(0, 0, 0, 0.22);
-      flex: none;
+      font-weight: 800;
+      font-size: 15px;
+      background: linear-gradient(145deg, #111111, #292929);
+      color: #ffd35e;
+      border: 1px solid rgba(255, 213, 94, 0.35);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.22);
     }
 
-    .nav {
+    .brand-name {
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .main-nav {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .nav a {
-      color: rgba(245, 240, 255, 0.84);
-      padding: 10px 14px;
+    .nav-link {
+      position: relative;
+      padding: 10px 16px;
       border-radius: 999px;
-      transition: 0.2s ease;
-      font-size: 14px;
+      color: rgba(241, 241, 255, 0.9);
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.2s ease;
     }
 
-    .nav a:hover {
-      background: rgba(90, 140, 255, 0.14);
+    .nav-link:hover {
       color: #ffffff;
-      box-shadow: var(--glow-cyan);
+      background: rgba(93, 158, 255, 0.18);
     }
 
-    .kbd-search {
-      padding: 10px 14px;
-      border: 1px solid rgba(129, 214, 255, 0.16);
-      background: rgba(255,255,255,0.06);
+    .nav-link.is-active {
+      color: #ffffff;
+      background: linear-gradient(90deg, rgba(45, 173, 255, 0.3), rgba(133, 92, 255, 0.32));
+      box-shadow: 0 0 0 1px rgba(132, 206, 255, 0.28), 0 8px 20px rgba(24, 18, 74, 0.35);
+    }
+
+    .nav-link.is-active::after {
+      content: "";
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: -8px;
+      height: 3px;
       border-radius: 999px;
-      color: rgba(245, 240, 255, 0.84);
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      white-space: nowrap;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
+      background: linear-gradient(90deg, #33d3ff, #8f8aff, #ff72ba);
+      box-shadow: 0 0 14px rgba(63, 185, 255, 0.6);
     }
 
-    .kbd-search span:last-child {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 12px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(129, 214, 255, 0.16);
-      border-bottom-width: 2px;
-      padding: 2px 8px;
-      border-radius: 8px;
-      color: var(--cyan);
+    .top-cta {
+      flex: none;
+      min-height: 40px;
+      padding: 0 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(122, 206, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      color: #f7fbff;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .top-cta:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-1px);
     }
 
     .hero {
-      padding: 72px 0 42px;
+      padding: 72px 0 36px;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .hero-main,
-    .hero-side,
-    .section-card,
-    .timeline-item,
-    .project-card,
-    .article-card,
-    .contact-card,
-    .command-panel {
-      background: linear-gradient(180deg, rgba(86, 122, 209, 0.26), rgba(105, 67, 175, 0.20));
-      border: 1px solid rgba(129, 214, 255, 0.18);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-    }
-
-    .hero-main {
-      border-radius: 32px;
-      padding: 42px;
-      position: relative;
+    .hero-card {
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(55, 77, 155, 0.28), rgba(49, 34, 110, 0.2));
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(12px);
+      text-align: center;
+      padding: 56px 34px 60px;
       overflow: hidden;
+      position: relative;
     }
 
-    .hero-main::before {
+    .hero-card::before,
+    .hero-card::after {
       content: "";
       position: absolute;
-      inset: auto -10% -35% auto;
-      width: 260px;
-      height: 260px;
+      width: 320px;
+      height: 320px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 93, 177, 0.22), transparent 66%);
       pointer-events: none;
+      filter: blur(2px);
     }
 
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(86, 122, 209, 0.28);
-      border: 1px solid rgba(129, 214, 255, 0.20);
-      border-radius: 999px;
-      padding: 8px 14px;
-      color: #e7e3ff;
-      font-size: 13px;
-      margin-bottom: 22px;
-      box-shadow: var(--glow-cyan);
+    .hero-card::before {
+      left: -120px;
+      top: -160px;
+      background: radial-gradient(circle, rgba(61, 211, 255, 0.26), transparent 70%);
     }
 
-    h1 {
-      margin: 0;
-      font-size: clamp(42px, 7vw, 72px);
-      line-height: 1.02;
-      letter-spacing: -0.055em;
-      background: linear-gradient(90deg, var(--cyan) 0%, #67a3ff 35%, #8b76ff 62%, var(--pink) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 18px rgba(103, 163, 255, 0.12);
+    .hero-card::after {
+      right: -120px;
+      bottom: -200px;
+      background: radial-gradient(circle, rgba(255, 114, 186, 0.2), transparent 72%);
     }
 
-    .hero-subtitle {
-      margin: 22px 0 0;
-      max-width: 760px;
-      color: rgba(245, 240, 255, 0.90);
-      font-size: clamp(16px, 2vw, 20px);
-    }
-
+    .hero-kicker,
+    .hero-title,
+    .hero-subtitle,
+    .hero-badges,
     .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
+      position: relative;
+      animation: fadeLift 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(14px);
     }
 
-    .btn {
+    .hero-kicker {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      min-height: 52px;
-      padding: 0 22px;
-      border-radius: 18px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(52, 212, 255, 0.15);
+      border: 1px solid rgba(105, 209, 255, 0.34);
+      color: #d8f4ff;
+      animation-delay: 0.1s;
+    }
+
+    .hero-title {
+      margin-top: 22px;
+      font-size: clamp(56px, 10vw, 112px);
+      line-height: 0.95;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+      background: var(--hero-grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-wrap: balance;
+      animation-delay: 0.25s;
+    }
+
+    .hero-subtitle {
+      margin: 24px auto 0;
+      max-width: 820px;
+      font-size: clamp(18px, 2.2vw, 25px);
+      color: var(--text-muted);
+      text-align: center;
+      animation-delay: 0.35s;
+    }
+
+    .hero-badges {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      animation-delay: 0.45s;
+    }
+
+    .metric-badge {
+      min-width: 160px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      backdrop-filter: blur(8px);
+    }
+
+    .metric-badge strong {
+      display: block;
+      font-size: 36px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .metric-badge span {
+      display: block;
+      margin-top: 6px;
+      font-size: 14px;
+      color: rgba(242, 245, 255, 0.9);
+    }
+
+    .badge-green {
+      background: linear-gradient(145deg, rgba(42, 133, 94, 0.33), rgba(23, 66, 57, 0.2));
+      border-color: rgba(91, 241, 174, 0.42);
+    }
+
+    .badge-green strong {
+      color: #61efb0;
+    }
+
+    .badge-blue {
+      background: linear-gradient(145deg, rgba(57, 101, 196, 0.34), rgba(30, 53, 120, 0.24));
+      border-color: rgba(113, 182, 255, 0.4);
+    }
+
+    .badge-blue strong {
+      color: #70bdff;
+    }
+
+    .badge-violet {
+      background: linear-gradient(145deg, rgba(123, 79, 206, 0.34), rgba(70, 45, 127, 0.24));
+      border-color: rgba(190, 149, 255, 0.4);
+    }
+
+    .badge-violet strong {
+      color: #c392ff;
+    }
+
+    .badge-orange {
+      background: linear-gradient(145deg, rgba(192, 96, 56, 0.34), rgba(117, 49, 35, 0.24));
+      border-color: rgba(255, 177, 127, 0.45);
+    }
+
+    .badge-orange strong {
+      color: #ffb774;
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      animation-delay: 0.55s;
+    }
+
+    .btn {
+      min-height: 54px;
+      min-width: 190px;
+      padding: 0 24px;
+      border-radius: var(--radius-md);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       font-weight: 700;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      font-size: 20px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .btn:hover {
@@ -244,768 +407,435 @@
     }
 
     .btn-primary {
-      background: linear-gradient(90deg, #12c96b, #15b88f);
+      background: linear-gradient(90deg, #1dcf73, #14b38d);
+      border: 1px solid rgba(87, 241, 167, 0.35);
+      box-shadow: 0 12px 24px rgba(26, 198, 117, 0.28);
       color: #ffffff;
-      border: 1px solid rgba(45, 216, 129, 0.34);
-      box-shadow: 0 10px 24px rgba(18, 201, 107, 0.24);
-    }
-
-    .btn-primary:hover {
-      box-shadow: 0 14px 30px rgba(18, 201, 107, 0.34);
     }
 
     .btn-secondary {
-      background: linear-gradient(90deg, rgba(71, 122, 241, 0.92), rgba(145, 69, 255, 0.92));
-      color: #ffffff;
-      border: 1px solid rgba(130, 176, 255, 0.28);
-      box-shadow: 0 10px 24px rgba(90, 140, 255, 0.22);
-    }
-
-    .btn-secondary:hover {
-      box-shadow: 0 14px 30px rgba(139, 92, 246, 0.28);
-    }
-
-    .hero-side {
-      border-radius: 32px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 18px;
-      background: linear-gradient(180deg, rgba(78, 114, 192, 0.42), rgba(83, 63, 155, 0.24));
-    }
-
-    .profile {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .avatar {
-      width: 72px;
-      height: 72px;
-      border-radius: 24px;
-      background: linear-gradient(135deg, #2ec8ff, #8d5dff);
-      color: #ffffff;
-      display: grid;
-      place-items: center;
-      font-size: 26px;
-      font-weight: 700;
-      flex: none;
-      box-shadow: 0 10px 24px rgba(76, 119, 255, 0.24);
-    }
-
-    .profile h2 {
-      margin: 0 0 4px;
-      font-size: 22px;
-      letter-spacing: -0.03em;
-    }
-
-    .muted { color: var(--muted); }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .stat {
-      border-radius: 18px;
-      border: 1px solid rgba(135, 218, 255, 0.18);
-      background: rgba(255, 255, 255, 0.04);
-      padding: 16px;
-      backdrop-filter: blur(12px);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 24px;
-      letter-spacing: -0.03em;
-      margin-bottom: 4px;
-    }
-
-    .stats .stat:nth-child(1) strong { color: #62f0a3; }
-    .stats .stat:nth-child(2) strong { color: #69c7ff; }
-    .stats .stat:nth-child(3) strong { color: #c38dff; }
-    .stats .stat:nth-child(4) strong { color: #ffd35c; }
-
-    .section { padding: 22px 0; }
-
-    .section-heading {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .section-heading h3 {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.05;
-      letter-spacing: -0.045em;
+      background: linear-gradient(90deg, #4778f1, #9145ff);
+      border: 1px solid rgba(133, 174, 255, 0.34);
+      box-shadow: 0 12px 24px rgba(89, 137, 255, 0.28);
       color: #ffffff;
     }
 
-    .section-card {
+    .content-section {
+      padding: 26px 0;
+    }
+
+    .section-wrap {
+      border: 1px solid var(--line);
       border-radius: var(--radius-lg);
-      padding: 28px;
-    }
-
-    .routes {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .route-card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(129, 214, 255, 0.18);
-      border-radius: 24px;
-      padding: 24px;
-      min-height: 240px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      background: linear-gradient(180deg, rgba(41, 60, 127, 0.28), rgba(43, 33, 94, 0.2));
+      box-shadow: var(--shadow-md);
+      padding: 30px;
       backdrop-filter: blur(10px);
     }
 
-    .route-label,
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      border: 1px solid rgba(129, 214, 255, 0.18);
-      background: rgba(90, 140, 255, 0.10);
-      color: #dce8ff;
-      padding: 6px 12px;
-      font-size: 12px;
-      width: fit-content;
+    .section-head {
+      margin-bottom: 18px;
     }
 
-    .route-card h4,
-    .project-card h4,
-    .article-card h4,
-    .timeline-item h4,
-    .contact-card h4 {
-      margin: 0;
-      font-size: 22px;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
+    .section-head span {
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(168, 219, 255, 0.86);
+    }
+
+    .section-head h2 {
+      margin-top: 6px;
+      font-size: clamp(34px, 5vw, 50px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
       color: #ffffff;
     }
 
-    .route-card p,
-    .project-card p,
-    .article-card p,
-    .timeline-item p,
-    .contact-card p {
-      margin: 0;
-      color: rgba(242, 236, 255, 0.88);
-    }
-
-    .route-steps {
-      padding-left: 18px;
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .timeline {
+    .card-grid {
       display: grid;
       gap: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .timeline-item {
-      border-radius: 22px;
-      padding: 22px 24px;
-      display: grid;
-      grid-template-columns: 84px 1fr;
-      gap: 18px;
-      align-items: start;
-      background: rgba(255,255,255,0.04);
-    }
-
-    .timeline-index {
-      width: 64px;
-      height: 64px;
+    .info-card {
+      border: 1px solid rgba(127, 207, 255, 0.22);
       border-radius: 20px;
-      background: linear-gradient(135deg, rgba(55, 200, 255, 0.22), rgba(139, 92, 246, 0.24));
-      border: 1px solid rgba(129, 214, 255, 0.18);
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-      font-size: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 22px;
+    }
+
+    .info-card h3 {
+      font-size: 24px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
       color: #ffffff;
     }
 
-    .project-grid,
-    .article-grid,
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+    .info-card p {
+      color: rgba(232, 240, 255, 0.9);
+      margin-bottom: 14px;
     }
 
-    .project-card,
-    .article-card,
-    .contact-card {
-      border-radius: 24px;
-      padding: 24px;
-      background: rgba(255,255,255,0.04);
-    }
-
-    .project-meta,
-    .article-meta,
-    .contact-meta {
+    .tag-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 16px;
     }
 
-    .link-row {
-      margin-top: 18px;
+    .tag {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-weight: 600;
-      color: #dce9ff;
+      border-radius: 999px;
+      border: 1px solid rgba(128, 204, 255, 0.24);
+      background: rgba(83, 130, 227, 0.16);
+      padding: 5px 12px;
+      font-size: 13px;
+      color: #dcf0ff;
     }
 
-    .link-row:hover {
-      color: #ffffff;
-      text-shadow: 0 0 18px rgba(90, 140, 255, 0.18);
-    }
-
-    .footer { padding: 52px 0 70px; }
-
-    .footer-card {
-      border-radius: 30px;
-      border: 1px solid rgba(129, 214, 255, 0.18);
-      background: linear-gradient(180deg, rgba(75, 107, 185, 0.34), rgba(120, 57, 154, 0.22));
-      padding: 28px;
+    .contact-row {
+      margin-top: 16px;
       display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .contact-link {
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(131, 207, 255, 0.24);
+      background: rgba(255, 255, 255, 0.06);
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
+      font-weight: 700;
+      transition: all 0.2s ease;
     }
 
-    .command-panel-wrap {
-      position: fixed;
-      inset: 0;
-      background: rgba(8, 10, 30, 0.46);
-      backdrop-filter: blur(8px);
-      display: none;
-      align-items: flex-start;
-      justify-content: center;
-      padding-top: 10vh;
-      z-index: 100;
-    }
-
-    .command-panel-wrap.active { display: flex; }
-
-    .command-panel {
-      width: min(720px, calc(100% - 24px));
-      border-radius: 26px;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(70, 96, 170, 0.94), rgba(88, 50, 144, 0.94));
-      border: 1px solid rgba(129, 214, 255, 0.18);
-    }
-
-    .command-head {
-      padding: 18px 20px;
-      border-bottom: 1px solid rgba(129, 214, 255, 0.16);
-    }
-
-    .command-head input {
-      width: 100%;
-      border: 0;
-      outline: 0;
-      background: transparent;
-      font-size: 16px;
-      color: var(--text);
-    }
-
-    .command-head input::placeholder {
-      color: var(--muted);
-    }
-
-    .command-list {
-      padding: 10px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .command-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      padding: 14px 14px;
-      border-radius: 16px;
-      cursor: pointer;
-      transition: background 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .command-item:hover {
-      background: rgba(255,255,255,0.08);
-      box-shadow: var(--glow-cyan);
-    }
-
-    .command-item small { color: var(--muted); }
-
-    code {
-      background: rgba(255,255,255,0.08);
-      padding: 3px 8px;
-      border-radius: 8px;
-      border: 1px solid rgba(129, 214, 255, 0.16);
+    .contact-link:hover {
+      background: rgba(255, 255, 255, 0.14);
       color: #ffffff;
     }
 
-    @media (max-width: 980px) {
-      .hero-grid,
-      .routes,
-      .project-grid,
-      .article-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
+    .site-footer {
+      padding: 36px 0 56px;
+      text-align: center;
+      color: rgba(225, 236, 255, 0.78);
+      font-size: 14px;
+    }
 
-      .timeline-item {
-        grid-template-columns: 1fr;
+    @keyframes fadeLift {
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
+    }
 
-      .topbar {
+    @media (max-width: 1020px) {
+      .nav-inner {
         flex-wrap: wrap;
-        padding: 12px 0;
+        justify-content: center;
+        padding: 10px 0;
       }
 
-      .footer-card {
-        flex-direction: column;
-        align-items: flex-start;
+      .main-nav {
+        order: 3;
+        width: 100%;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-title {
+        font-size: clamp(48px, 11vw, 86px);
       }
     }
 
     @media (max-width: 720px) {
-      .hero-main,
-      .hero-side,
-      .section-card,
-      .project-card,
-      .article-card,
-      .contact-card,
-      .timeline-item,
-      .footer-card {
+      .announce-inner {
+        min-height: 40px;
+        font-size: 12px;
+      }
+
+      .announce-inner p {
+        max-width: 58vw;
+      }
+
+      .brand-name {
+        font-size: 22px;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .hero-card {
+        padding: 34px 20px 40px;
+      }
+
+      .hero-subtitle {
+        font-size: 17px;
+      }
+
+      .metric-badge {
+        width: calc(50% - 8px);
+        min-width: 0;
+      }
+
+      .metric-badge strong {
+        font-size: 28px;
+      }
+
+      .btn {
+        min-width: 100%;
+        font-size: 18px;
+      }
+
+      .section-wrap {
         padding: 22px;
       }
 
-      .nav {
-        overflow-x: auto;
-        width: 100%;
-        padding-bottom: 4px;
-      }
-
-      .kbd-search {
-        width: 100%;
-        justify-content: space-between;
+      .card-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <header class="topbar-wrap">
-    <div class="container topbar">
-      <a class="brand" href="#top">
-        <div class="brand-mark">ZF</div>
-        <div>
-          <div>Zhoufj8</div>
-        </div>
-      </a>
+  <header class="site-header">
+    <div class="announce-bar">
+      <div class="container announce-inner">
+        <span class="announce-pill">公告</span>
+        <p>站点持续更新中：近期重点发布量化项目复盘与自动化工具笔记。</p>
+        <a class="announce-link" href="#contact">联系我</a>
+      </div>
+    </div>
 
-      <nav class="nav" aria-label="Main Navigation">
-        <a href="#about">关于</a>
-        <a href="#projects">方向</a>
-        <a href="#notes">笔记</a>
-        <a href="#timeline">路径</a>
-        <a href="#contact">联系</a>
-      </nav>
+    <div class="nav-shell">
+      <div class="container nav-inner">
+        <a class="brand" href="#home">
+          <span class="brand-mark">ZF</span>
+          <span class="brand-name">Zhoufj8</span>
+        </a>
 
-      <button class="kbd-search" id="openCommand" aria-label="打开快速导航">
-        <span>搜索章节 / 方向 / 页面</span>
-        <span>K</span>
-      </button>
+        <nav class="main-nav" aria-label="主导航">
+          <a class="nav-link is-active" href="#home">首页</a>
+          <a class="nav-link" href="#projects">项目</a>
+          <a class="nav-link" href="#notes">笔记</a>
+          <a class="nav-link" href="#contact">联系我</a>
+        </nav>
+
+        <a class="top-cta" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-main">
-          <div class="hero-tag">个人主页 / GitHub Pages / Quant Learning Journey</div>
-          <h1>保持研究热情，慢慢搭建自己的量化世界。</h1>
-          <p class="hero-subtitle">
-            我是 Zhoufj8，一名量化爱好者。
-            这里会逐步记录我的学习路径、研究兴趣、阅读笔记，以及未来准备公开的量化项目与实验。
-          </p>
+  <main>
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="hero-kicker">Personal Brand / Product-style Homepage</div>
+          <h1 class="hero-title">把学习做成作品，<br />把作品变成影响力</h1>
+          <p class="hero-subtitle">这里是 Zhoufj8 的 GitHub 主页，聚焦量化学习、项目构建与技术笔记沉淀。持续发布，长期主义，面向真实产出。</p>
+
+          <div class="hero-badges">
+            <div class="metric-badge badge-green">
+              <strong>12+</strong>
+              <span>进行中项目</span>
+            </div>
+            <div class="metric-badge badge-blue">
+              <strong>30+</strong>
+              <span>学习笔记</span>
+            </div>
+            <div class="metric-badge badge-violet">
+              <strong>95%</strong>
+              <span>周更新频率</span>
+            </div>
+            <div class="metric-badge badge-orange">
+              <strong>24h</strong>
+              <span>响应交流</span>
+            </div>
+          </div>
+
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">查看方向</a>
-            <a class="btn btn-secondary" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="btn btn-secondary" href="#contact">联系我</a>
-          </div>
-        </div>
-
-        <aside class="hero-side">
-          <div class="profile">
-            <div class="avatar">Z</div>
-            <div>
-              <h2>Zhoufj8</h2>
-              <div class="muted">Quant Enthusiast / Learner / Builder in Progress</div>
-            </div>
-          </div>
-
-          <p class="muted">
-            你可以把这里当作我的公开学习空间：我会持续整理量化相关的思考、学习记录、实验方向，以及之后逐步上线的个人项目。
-          </p>
-
-          <div class="stats">
-            <div class="stat">
-              <strong>0 → N</strong>
-              <span class="muted">项目筹备中</span>
-            </div>
-            <div class="stat">
-              <strong>持续更新</strong>
-              <span class="muted">学习笔记</span>
-            </div>
-            <div class="stat">
-              <strong>长期主义</strong>
-              <span class="muted">量化学习路径</span>
-            </div>
-            <div class="stat">
-              <strong>Quant</strong>
-              <span class="muted">数据 / 策略 / 回测</span>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="muted">Start Here</div>
-            <h3>30 秒了解我现在在做什么</h3>
-          </div>
-        </div>
-
-        <div class="section-card">
-          <div class="routes">
-            <article class="route-card">
-              <div class="route-label">研究方向</div>
-              <h4>量化研究与策略学习</h4>
-              <p>目前重点关注因子研究、策略构建、回测分析与数据处理，希望先打牢研究基本功。</p>
-              <ol class="route-steps">
-                <li>理解常见因子与策略框架</li>
-                <li>练习数据分析与回测方法</li>
-              </ol>
-              <a class="link-row" href="#projects">查看方向 →</a>
-            </article>
-
-            <article class="route-card">
-              <div class="route-label">工具积累</div>
-              <h4>编程能力与研究工具</h4>
-              <p>通过 Python 和相关工具提升研究效率，逐步搭建适合自己的数据处理、实验记录和分析流程。</p>
-              <ol class="route-steps">
-                <li>构建可复现的研究脚本</li>
-                <li>沉淀自己的量化工具箱</li>
-              </ol>
-              <a class="link-row" href="#timeline">查看路径 →</a>
-            </article>
-
-            <article class="route-card">
-              <div class="route-label">输出沉淀</div>
-              <h4>记录过程，持续输出</h4>
-              <p>我希望把学习过程公开记录下来，包括阅读笔记、研究心得和之后逐步成型的项目复盘。</p>
-              <ol class="route-steps">
-                <li>整理学习笔记与总结</li>
-                <li>把想法逐步写成文章</li>
-              </ol>
-              <a class="link-row" href="#notes">阅读笔记 →</a>
-            </article>
+            <a class="btn btn-primary" href="#projects">查看项目</a>
+            <a class="btn btn-secondary" href="#notes">阅读笔记</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="timeline">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="muted">Learning Path</div>
-            <h3>我正在形成的学习与研究路径</h3>
-          </div>
+    <section id="projects" class="content-section">
+      <div class="container section-wrap">
+        <div class="section-head">
+          <span>Projects</span>
+          <h2>项目</h2>
         </div>
 
-        <div class="timeline">
-          <article class="timeline-item">
-            <div class="timeline-index">1</div>
-            <div>
-              <div class="chip">Understand</div>
-              <h4>先理解问题，再开始动手</h4>
-              <p>先理解一个问题为什么值得研究，再梳理需要什么数据、指标和基础知识，避免一开始就陷入无效实现。</p>
+        <div class="card-grid">
+          <article class="info-card">
+            <h3>回测实验工作台</h3>
+            <p>用于记录策略假设、回测过程和结果对比，持续沉淀可复用的研究模板。</p>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">Backtest</span>
+              <span class="tag">Data</span>
             </div>
           </article>
 
-          <article class="timeline-item">
-            <div class="timeline-index">2</div>
-            <div>
-              <div class="chip">Experiment</div>
-              <h4>把想法变成可验证的小实验</h4>
-              <p>把学习到的想法转成可以验证的小实验，例如简单策略、基础特征、回测指标与结果对比。</p>
+          <article class="info-card">
+            <h3>因子研究日志</h3>
+            <p>按主题整理因子构建、验证与失效分析，形成可检索的知识库。</p>
+            <div class="tag-row">
+              <span class="tag">Factor</span>
+              <span class="tag">Research</span>
+              <span class="tag">Notebook</span>
             </div>
           </article>
 
-          <article class="timeline-item">
-            <div class="timeline-index">3</div>
-            <div>
-              <div class="chip">Build</div>
-              <h4>把练习整理成可复用的代码</h4>
-              <p>把零散练习整理成可复现的代码和脚本，让每次尝试都能积累成之后可复用的研究资产。</p>
-            </div>
-          </article>
-
-          <article class="timeline-item">
-            <div class="timeline-index">4</div>
-            <div>
-              <div class="chip">Share</div>
-              <h4>通过主页和笔记记录成长</h4>
-              <p>通过主页、笔记和未来的项目页面记录成长路径，让学习不只是输入，也变成对外可见的沉淀。</p>
+          <article class="info-card">
+            <h3>量化工具箱</h3>
+            <p>围绕数据清洗、指标计算、可视化输出构建一套轻量化脚本工具。</p>
+            <div class="tag-row">
+              <span class="tag">Utility</span>
+              <span class="tag">Workflow</span>
+              <span class="tag">Automation</span>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="muted">In Progress</div>
-            <h3>正在准备的项目方向</h3>
-          </div>
+    <section id="notes" class="content-section">
+      <div class="container section-wrap">
+        <div class="section-head">
+          <span>Notes</span>
+          <h2>笔记</h2>
         </div>
 
-        <div class="project-grid">
-          <article class="project-card">
-            <div class="chip">Preparing</div>
-            <h4>回测练习项目</h4>
-            <p>计划从一个小型量化回测项目开始，练习数据读取、信号生成、收益统计与基础绩效分析。</p>
-            <div class="project-meta">
-              <span class="chip">Python</span>
-              <span class="chip">Backtest</span>
-              <span class="chip">Learning</span>
+        <div class="card-grid">
+          <article class="info-card">
+            <h3>策略评估指标拆解</h3>
+            <p>从收益、波动、回撤和稳定性维度出发，形成统一的策略评估框架。</p>
+            <div class="tag-row">
+              <span class="tag">Sharpe</span>
+              <span class="tag">Drawdown</span>
+              <span class="tag">Risk</span>
             </div>
-            <a class="link-row" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">查看主页 →</a>
           </article>
 
-          <article class="project-card">
-            <div class="chip">Preparing</div>
-            <h4>因子研究笔记</h4>
-            <p>计划整理常见因子、评价方式和实验心得，把学习过程沉淀成结构化的研究笔记。</p>
-            <div class="project-meta">
-              <span class="chip">Factor</span>
-              <span class="chip">Notes</span>
-              <span class="chip">Research</span>
+          <article class="info-card">
+            <h3>数据处理规范</h3>
+            <p>记录从原始数据到可用特征的处理流程，减少重复试错与口径偏差。</p>
+            <div class="tag-row">
+              <span class="tag">ETL</span>
+              <span class="tag">Feature</span>
+              <span class="tag">Validation</span>
             </div>
-            <a class="link-row" href="#notes">查看内容 →</a>
           </article>
 
-          <article class="project-card">
-            <div class="chip">Preparing</div>
-            <h4>量化工具箱</h4>
-            <p>未来准备逐步积累一些自己常用的小工具，例如数据清洗、指标计算和实验结果可视化脚本。</p>
-            <div class="project-meta">
-              <span class="chip">Tools</span>
-              <span class="chip">Utility</span>
-              <span class="chip">Workflow</span>
+          <article class="info-card">
+            <h3>学习复盘周报</h3>
+            <p>每周总结输入、输出与下一步计划，让学习与构建长期稳定推进。</p>
+            <div class="tag-row">
+              <span class="tag">Weekly</span>
+              <span class="tag">Review</span>
+              <span class="tag">Roadmap</span>
             </div>
-            <a class="link-row" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">未来更新 →</a>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="notes">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="muted">Notes & Essays</div>
-            <h3>准备陆续整理的内容</h3>
-          </div>
+    <section id="contact" class="content-section">
+      <div class="container section-wrap">
+        <div class="section-head">
+          <span>Contact</span>
+          <h2>联系我</h2>
         </div>
 
-        <div class="article-grid">
-          <article class="article-card">
-            <div class="chip">Essay</div>
-            <h4>我为什么开始认真学习量化</h4>
-            <p>记录自己进入量化领域的动机、兴趣来源，以及希望长期投入这个方向的原因。</p>
-            <a class="link-row" href="#">未来补充 →</a>
+        <div class="card-grid">
+          <article class="info-card">
+            <h3>GitHub</h3>
+            <p>查看代码、进度和公开仓库更新，欢迎提交 Issue 交流。</p>
+            <div class="contact-row">
+              <a class="contact-link" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">github.com/Zhoufj8</a>
+            </div>
           </article>
 
-          <article class="article-card">
-            <div class="chip">Technical Note</div>
-            <h4>回测学习中的几个基础问题</h4>
-            <p>整理自己在学习过程中反复遇到的概念，比如收益计算、滑点、手续费与策略评价指标。</p>
-            <a class="link-row" href="#">未来补充 →</a>
+          <article class="info-card">
+            <h3>Email</h3>
+            <p>合作沟通、学习交流或项目讨论都可以通过邮件联系。</p>
+            <div class="contact-row">
+              <a class="contact-link" href="mailto:Andrejzh8@gmail.com">Andrejzh8@gmail.com</a>
+            </div>
           </article>
 
-          <article class="article-card">
-            <div class="chip">Roadmap</div>
-            <h4>未来准备公开的第一个项目会是什么</h4>
-            <p>先给自己立一个公开目标：从最简单、最可完成的项目开始，把想法真正落地成代码。</p>
-            <a class="link-row" href="#">未来补充 →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="muted">Contact</div>
-            <h3>继续交流</h3>
-          </div>
-        </div>
-
-        <div class="contact-grid">
-          <article class="contact-card">
-            <div class="chip">GitHub</div>
-            <h4>代码与成长记录</h4>
-            <p>目前主要会放学习中的代码、之后逐步公开的练习项目，以及未来持续更新的个人仓库。</p>
-            <a class="link-row" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">github.com/Zhoufj8 →</a>
-          </article>
-
-          <article class="contact-card">
-            <div class="chip">Email</div>
-            <h4>邮件联系</h4>
-            <p>适合合作沟通、研究交流、学习讨论或更正式的话题。</p>
-            <a class="link-row" href="mailto:Andrejzh8@gmail.com">Andrejzh8@gmail.com →</a>
-          </article>
-
-          <article class="contact-card">
-            <div class="chip">More</div>
-            <h4>更多内容</h4>
-            <p>这里后续可以补充博客、社交账号或笔记平台链接，作为你的公开输出入口。</p>
-            <a class="link-row" href="#">后续补充 →</a>
+          <article class="info-card">
+            <h3>下一步</h3>
+            <p>后续会加入完整项目列表、文章详情页和更新日志页面。</p>
+            <div class="tag-row">
+              <span class="tag">Project Archive</span>
+              <span class="tag">Article Page</span>
+              <span class="tag">Changelog</span>
+            </div>
           </article>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-card">
-        <div>
-          <div class="chip">Personal Homepage</div>
-          <h4 style="margin: 14px 0 8px; font-size: 30px; letter-spacing: -0.04em;">把这里部署到 GitHub Pages，就可以直接上线。</h4>
-          <p class="muted" style="margin: 0;">建议仓库名使用 <code>Zhoufj8.github.io</code>，然后把这个文件命名为 <code>index.html</code>。</p>
-        </div>
-        <a class="btn btn-primary" href="https://pages.github.com/" target="_blank" rel="noreferrer">查看部署说明</a>
-      </div>
-    </div>
+  <footer class="site-footer">
+    <div class="container">© 2026 Zhoufj8 · Built for GitHub Pages</div>
   </footer>
 
-  <div class="command-panel-wrap" id="commandPanel">
-    <div class="command-panel">
-      <div class="command-head">
-        <input id="commandInput" type="text" placeholder="输入关键词快速跳转，比如：方向 / 联系 / 笔记" />
-      </div>
-      <div class="command-list" id="commandList">
-        <div class="command-item" data-target="#about">
-          <div>
-            <strong>关于</strong><br />
-            <small>查看个人介绍和学习方向</small>
-          </div>
-          <span>↵</span>
-        </div>
-        <div class="command-item" data-target="#projects">
-          <div>
-            <strong>方向</strong><br />
-            <small>查看正在准备的项目方向</small>
-          </div>
-          <span>↵</span>
-        </div>
-        <div class="command-item" data-target="#notes">
-          <div>
-            <strong>笔记</strong><br />
-            <small>查看未来准备整理的内容</small>
-          </div>
-          <span>↵</span>
-        </div>
-        <div class="command-item" data-target="#contact">
-          <div>
-            <strong>联系</strong><br />
-            <small>查看 GitHub 和邮箱</small>
-          </div>
-          <span>↵</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script>
-    const panel = document.getElementById('commandPanel');
-    const openBtn = document.getElementById('openCommand');
-    const input = document.getElementById('commandInput');
-    const items = [...document.querySelectorAll('.command-item')];
+    (() => {
+      const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+      const sections = navLinks
+        .map((link) => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
 
-    function openPanel() {
-      panel.classList.add('active');
-      setTimeout(() => input.focus(), 10);
-    }
+      const setActive = (id) => {
+        navLinks.forEach((link) => {
+          const active = link.getAttribute('href') === `#${id}`;
+          link.classList.toggle('is-active', active);
+          if (active) {
+            link.setAttribute('aria-current', 'page');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+      };
 
-    function closePanel() {
-      panel.classList.remove('active');
-      input.value = '';
-      filterItems('');
-    }
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-    function filterItems(keyword) {
-      const q = keyword.trim().toLowerCase();
-      items.forEach((item) => {
-        const text = item.innerText.toLowerCase();
-        item.style.display = text.includes(q) ? 'flex' : 'none';
+          if (visible.length > 0) {
+            setActive(visible[0].target.id);
+          }
+        },
+        {
+          threshold: [0.25, 0.5, 0.75],
+          rootMargin: '-40% 0px -45% 0px',
+        }
+      );
+
+      sections.forEach((section) => observer.observe(section));
+
+      navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          const id = link.getAttribute('href').slice(1);
+          setActive(id);
+        });
       });
-    }
-
-    openBtn.addEventListener('click', openPanel);
-
-    panel.addEventListener('click', (e) => {
-      if (e.target === panel) closePanel();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if ((e.key === 'k' || e.key === 'K') && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
-        e.preventDefault();
-        panel.classList.contains('active') ? closePanel() : openPanel();
-      }
-      if (e.key === 'Escape' && panel.classList.contains('active')) {
-        closePanel();
-      }
-    });
-
-    input.addEventListener('input', (e) => filterItems(e.target.value));
-
-    items.forEach((item) => {
-      item.addEventListener('click', () => {
-        const target = document.querySelector(item.dataset.target);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        closePanel();
-      });
-    });
+    })();
   </script>
 </body>
 </html>
