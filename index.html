@@ -592,6 +592,21 @@
       box-shadow: 0 12px 28px rgba(0,0,0,0.18);
     }
 
+    .theme-about .routes {
+      gap: 22px;
+    }
+
+    .theme-about .route-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+      border: 1px solid rgba(77, 220, 255, 0.14);
+      box-shadow: none;
+      min-height: unset;
+    }
+
+    .theme-about .route-card:hover {
+      border-color: rgba(77, 220, 255, 0.24);
+    }
+
     .route-label,
     .chip {
       display: inline-flex;
@@ -1050,56 +1065,39 @@
           </div>
         </div>
 
-        <div class="section-card">
-          <div class="routes">
-            <article class="route-card">
-              <div class="route-label">研究方向</div>
-              <h4>量化研究与策略学习</h4>
-              <p>目前重点关注因子研究、策略构建、回测分析与数据处理，希望先打牢研究基本功。</p>
-              <ol class="route-steps">
-                <li>理解常见因子与策略框架</li>
-                <li>练习数据分析与回测方法</li>
-              </ol>
-              <a class="link-row" href="#projects">查看方向 →</a>
-            </article>
+        <div class="routes">
+          <article class="route-card">
+            <div class="route-label">研究方向</div>
+            <h4>量化研究与策略学习</h4>
+            <p>目前重点关注因子研究、策略构建、回测分析与数据处理，希望先打牢研究基本功。</p>
+            <ol class="route-steps">
+              <li>理解常见因子与策略框架</li>
+              <li>练习数据分析与回测方法</li>
+            </ol>
+            <a class="link-row" href="#projects">查看方向 →</a>
+          </article>
 
-            <article class="route-card">
-              <div class="route-label">工具积累</div>
-              <h4>编程能力与研究工具</h4>
-              <p>通过 Python 和相关工具提升研究效率，逐步搭建适合自己的数据处理、实验记录和分析流程。</p>
-              <ol class="route-steps">
-                <li>构建可复现的研究脚本</li>
-                <li>沉淀自己的量化工具箱</li>
-              </ol>
-              <a class="link-row" href="#timeline">查看路径 →</a>
-            </article>
+          <article class="route-card">
+            <div class="route-label">工具积累</div>
+            <h4>编程能力与研究工具</h4>
+            <p>通过 Python 和相关工具提升研究效率，逐步搭建适合自己的数据处理、实验记录和分析流程。</p>
+            <ol class="route-steps">
+              <li>构建可复现的研究脚本</li>
+              <li>沉淀自己的量化工具箱</li>
+            </ol>
+            <a class="link-row" href="#timeline">查看路径 →</a>
+          </article>
 
-            <article class="route-card">
-              <div class="route-label">输出沉淀</div>
-              <h4>记录过程，持续输出</h4>
-              <p>我希望把学习过程公开记录下来，包括阅读笔记、研究心得和之后逐步成型的项目复盘。</p>
-              <ol class="route-steps">
-                <li>整理学习笔记与总结</li>
-                <li>把想法逐步写成文章</li>
-              </ol>
-              <a class="link-row" href="#notes">阅读笔记 →</a>
-            </article>
-          </div>
-        </div>
-
-        <div class="feature-grid">
-          <div class="feature-row reverse">
-            <div class="feature-copy">
-              <div class="feature-icon">✦</div>
-              <h4>特色 1：量化方向清晰，路径持续迭代</h4>
-              <p>我会把学习与研究拆成清晰的板块，让主页不仅展示结果，也能展示思考过程和阶段性重点。</p>
-              <div class="feature-tags">
-                <span class="chip">量化学习</span>
-                <span class="chip">长期积累</span>
-              </div>
-            </div>
-            <div class="feature-media placeholder"></div>
-          </div>
+          <article class="route-card">
+            <div class="route-label">输出沉淀</div>
+            <h4>记录过程，持续输出</h4>
+            <p>我希望把学习过程公开记录下来，包括阅读笔记、研究心得和之后逐步成型的项目复盘。</p>
+            <ol class="route-steps">
+              <li>整理学习笔记与总结</li>
+              <li>把想法逐步写成文章</li>
+            </ol>
+            <a class="link-row" href="#notes">阅读笔记 →</a>
+          </article>
         </div>
       </div>
     </section>
