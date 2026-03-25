@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zhoufj8 | Personal Site</title>
+  <meta name="description" content="Zhoufj8 的个人 GitHub 主页，展示量化学习路径、研究兴趣与未来项目计划。" />
+  <style>
+    :root {
+      --bg: #fcfcf9;
+      --panel: rgba(255, 255, 255, 0.74);
+      --card: #ffffff;
+      --text: #171717;
+      --muted: #666666;
+      --line: #e8e5de;
+      --soft: #f3f0ea;
+      --accent: #111111;
+      --shadow: 0 10px 30px rgba(17, 17, 17, 0.05);
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --max-width: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(0, 0, 0, 0.03), transparent 28%),
+        linear-gradient(to bottom, #fffefb, var(--bg));
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(252, 252, 249, 0.78);
+      border-bottom: 1px solid rgba(232, 229, 222, 0.85);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #111111, #444444);
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      box-shadow: var(--shadow);
+      flex: none;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: 0.2s ease;
+      font-size: 14px;
+    }
+
+    .nav a:hover {
+      background: var(--soft);
+      color: var(--text);
+    }
+
+    .kbd-search {
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.75);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .kbd-search span:last-child {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-bottom-width: 2px;
+      padding: 2px 8px;
+      border-radius: 8px;
+      color: #444;
+    }
+
+    .hero {
+      padding: 72px 0 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-main,
+    .hero-side,
+    .section-card,
+    .timeline-item,
+    .project-card,
+    .article-card,
+    .contact-card,
+    .command-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-main {
+      border-radius: 32px;
+      padding: 42px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 14px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-subtitle {
+      margin: 22px 0 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 20px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 16px;
+      font-weight: 600;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .hero-side {
+      border-radius: 32px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .profile {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #151515, #6a6a6a);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      font-weight: 700;
+      flex: none;
+    }
+
+    .profile h2 {
+      margin: 0 0 4px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .muted { color: var(--muted); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 16px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .section { padding: 22px 0; }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-heading h3 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+    }
+
+    .section-card {
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+
+    .routes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .route-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .route-label,
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      color: #4f4f4f;
+      padding: 6px 12px;
+      font-size: 12px;
+      width: fit-content;
+    }
+
+    .route-card h4,
+    .project-card h4,
+    .article-card h4,
+    .timeline-item h4,
+    .contact-card h4 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .route-card p,
+    .project-card p,
+    .article-card p,
+    .timeline-item p,
+    .contact-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .route-steps {
+      padding-left: 18px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      border-radius: 22px;
+      padding: 22px 24px;
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .timeline-index {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      background: #fff;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .project-grid,
+    .article-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .project-card,
+    .article-card,
+    .contact-card {
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .project-meta,
+    .article-meta,
+    .contact-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .link-row {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+
+    .footer { padding: 52px 0 70px; }
+
+    .footer-card {
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.78);
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .command-panel-wrap {
+      position: fixed;
+      inset: 0;
+      background: rgba(17,17,17,0.2);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 10vh;
+      z-index: 100;
+    }
+
+    .command-panel-wrap.active { display: flex; }
+
+    .command-panel {
+      width: min(720px, calc(100% - 24px));
+      border-radius: 26px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.94);
+    }
+
+    .command-head {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .command-head input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    .command-list {
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .command-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 14px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: background 0.18s ease;
+    }
+
+    .command-item:hover { background: var(--soft); }
+    .command-item small { color: var(--muted); }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .routes,
+      .project-grid,
+      .article-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        flex-wrap: wrap;
+        padding: 12px 0;
+      }
+
+      .footer-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .hero-main,
+      .hero-side,
+      .section-card,
+      .project-card,
+      .article-card,
+      .contact-card,
+      .timeline-item,
+      .footer-card {
+        padding: 22px;
+      }
+
+      .nav {
+        overflow-x: auto;
+        width: 100%;
+        padding-bottom: 4px;
+      }
+
+      .kbd-search {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar-wrap">
+    <div class="container topbar">
+      <a class="brand" href="#top">
+        <div class="brand-mark">ZF</div>
+        <div>
+          <div>Zhoufj8</div>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Main Navigation">
+        <a href="#about">关于</a>
+        <a href="#projects">方向</a>
+        <a href="#notes">笔记</a>
+        <a href="#timeline">路径</a>
+        <a href="#contact">联系</a>
+      </nav>
+
+      <button class="kbd-search" id="openCommand" aria-label="打开快速导航">
+        <span>搜索章节 / 方向 / 页面</span>
+        <span>K</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-main">
+          <div class="hero-tag">个人主页 / GitHub Pages / Quant Learning Journey</div>
+          <h1>保持研究热情，慢慢搭建自己的量化世界。</h1>
+          <p class="hero-subtitle">
+            我是 Zhoufj8，一名量化爱好者。
+            这里会逐步记录我的学习路径、研究兴趣、阅读笔记，以及未来准备公开的量化项目与实验。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">查看方向</a>
+            <a class="btn btn-secondary" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn btn-secondary" href="#contact">联系我</a>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="profile">
+            <div class="avatar">Z</div>
+            <div>
+              <h2>Zhoufj8</h2>
+              <div class="muted">Quant Enthusiast / Learner / Builder in Progress</div>
+            </div>
+          </div>
+
+          <p class="muted">
+            你可以把这里当作我的公开学习空间：我会持续整理量化相关的思考、学习记录、实验方向，以及之后逐步上线的个人项目。
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>0 → N</strong>
+              <span class="muted">项目筹备中</span>
+            </div>
+            <div class="stat">
+              <strong>持续更新</strong>
+              <span class="muted">学习笔记</span>
+            </div>
+            <div class="stat">
+              <strong>长期主义</strong>
+              <span class="muted">量化学习路径</span>
+            </div>
+            <div class="stat">
+              <strong>Quant</strong>
+              <span class="muted">数据 / 策略 / 回测</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="muted">Start Here</div>
+            <h3>30 秒了解我现在在做什么</h3>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="routes">
+            <article class="route-card">
+              <div class="route-label">研究方向</div>
+              <h4>量化研究与策略学习</h4>
+              <p>目前重点关注因子研究、策略构建、回测分析与数据处理，希望先打牢研究基本功。</p>
+              <ol class="route-steps">
+                <li>理解常见因子与策略框架</li>
+                <li>练习数据分析与回测方法</li>
+              </ol>
+              <a class="link-row" href="#projects">查看方向 →</a>
+            </article>
+
+            <article class="route-card">
+              <div class="route-label">工具积累</div>
+              <h4>编程能力与研究工具</h4>
+              <p>通过 Python 和相关工具提升研究效率，逐步搭建适合自己的数据处理、实验记录和分析流程。</p>
+              <ol class="route-steps">
+                <li>构建可复现的研究脚本</li>
+                <li>沉淀自己的量化工具箱</li>
+              </ol>
+              <a class="link-row" href="#timeline">查看路径 →</a>
+            </article>
+
+            <article class="route-card">
+              <div class="route-label">输出沉淀</div>
+              <h4>记录过程，持续输出</h4>
+              <p>我希望把学习过程公开记录下来，包括阅读笔记、研究心得和之后逐步成型的项目复盘。</p>
+              <ol class="route-steps">
+                <li>整理学习笔记与总结</li>
+                <li>把想法逐步写成文章</li>
+              </ol>
+              <a class="link-row" href="#notes">阅读笔记 →</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="timeline">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="muted">Learning Path</div>
+            <h3>我正在形成的学习与研究路径</h3>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-index">1</div>
+            <div>
+              <div class="chip">Understand</div>
+              <h4>先理解问题，再开始动手</h4>
+              <p>先理解一个问题为什么值得研究，再梳理需要什么数据、指标和基础知识，避免一开始就陷入无效实现。</p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-index">2</div>
+            <div>
+              <div class="chip">Experiment</div>
+              <h4>把想法变成可验证的小实验</h4>
+              <p>把学习到的想法转成可以验证的小实验，例如简单策略、基础特征、回测指标与结果对比。</p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-index">3</div>
+            <div>
+              <div class="chip">Build</div>
+              <h4>把练习整理成可复用的代码</h4>
+              <p>把零散练习整理成可复现的代码和脚本，让每次尝试都能积累成之后可复用的研究资产。</p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-index">4</div>
+            <div>
+              <div class="chip">Share</div>
+              <h4>通过主页和笔记记录成长</h4>
+              <p>通过主页、笔记和未来的项目页面记录成长路径，让学习不只是输入，也变成对外可见的沉淀。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="muted">In Progress</div>
+            <h3>正在准备的项目方向</h3>
+          </div>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="chip">Preparing</div>
+            <h4>回测练习项目</h4>
+            <p>计划从一个小型量化回测项目开始，练习数据读取、信号生成、收益统计与基础绩效分析。</p>
+            <div class="project-meta">
+              <span class="chip">Python</span>
+              <span class="chip">Backtest</span>
+              <span class="chip">Learning</span>
+            </div>
+            <a class="link-row" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">查看主页 →</a>
+          </article>
+
+          <article class="project-card">
+            <div class="chip">Preparing</div>
+            <h4>因子研究笔记</h4>
+            <p>计划整理常见因子、评价方式和实验心得，把学习过程沉淀成结构化的研究笔记。</p>
+            <div class="project-meta">
+              <span class="chip">Factor</span>
+              <span class="chip">Notes</span>
+              <span class="chip">Research</span>
+            </div>
+            <a class="link-row" href="#notes">查看内容 →</a>
+          </article>
+
+          <article class="project-card">
+            <div class="chip">Preparing</div>
+            <h4>量化工具箱</h4>
+            <p>未来准备逐步积累一些自己常用的小工具，例如数据清洗、指标计算和实验结果可视化脚本。</p>
+            <div class="project-meta">
+              <span class="chip">Tools</span>
+              <span class="chip">Utility</span>
+              <span class="chip">Workflow</span>
+            </div>
+            <a class="link-row" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">未来更新 →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="notes">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="muted">Notes & Essays</div>
+            <h3>准备陆续整理的内容</h3>
+          </div>
+        </div>
+
+        <div class="article-grid">
+          <article class="article-card">
+            <div class="chip">Essay</div>
+            <h4>我为什么开始认真学习量化</h4>
+            <p>记录自己进入量化领域的动机、兴趣来源，以及希望长期投入这个方向的原因。</p>
+            <a class="link-row" href="#">未来补充 →</a>
+          </article>
+
+          <article class="article-card">
+            <div class="chip">Technical Note</div>
+            <h4>回测学习中的几个基础问题</h4>
+            <p>整理自己在学习过程中反复遇到的概念，比如收益计算、滑点、手续费与策略评价指标。</p>
+            <a class="link-row" href="#">未来补充 →</a>
+          </article>
+
+          <article class="article-card">
+            <div class="chip">Roadmap</div>
+            <h4>未来准备公开的第一个项目会是什么</h4>
+            <p>先给自己立一个公开目标：从最简单、最可完成的项目开始，把想法真正落地成代码。</p>
+            <a class="link-row" href="#">未来补充 →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="muted">Contact</div>
+            <h3>继续交流</h3>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <article class="contact-card">
+            <div class="chip">GitHub</div>
+            <h4>代码与成长记录</h4>
+            <p>目前主要会放学习中的代码、之后逐步公开的练习项目，以及未来持续更新的个人仓库。</p>
+            <a class="link-row" href="https://github.com/Zhoufj8" target="_blank" rel="noreferrer">github.com/Zhoufj8 →</a>
+          </article>
+
+          <article class="contact-card">
+            <div class="chip">Email</div>
+            <h4>邮件联系</h4>
+            <p>适合合作沟通、研究交流、学习讨论或更正式的话题。</p>
+            <a class="link-row" href="mailto:Andrejzh8@gmail.com">Andrejzh8@gmail.com →</a>
+          </article>
+
+          <article class="contact-card">
+            <div class="chip">More</div>
+            <h4>更多内容</h4>
+            <p>这里后续可以补充博客、社交账号或笔记平台链接，作为你的公开输出入口。</p>
+            <a class="link-row" href="#">后续补充 →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-card">
+        <div>
+          <div class="chip">Personal Homepage</div>
+          <h4 style="margin: 14px 0 8px; font-size: 30px; letter-spacing: -0.04em;">把这里部署到 GitHub Pages，就可以直接上线。</h4>
+          <p class="muted" style="margin: 0;">建议仓库名使用 <code>Zhoufj8.github.io</code>，然后把这个文件命名为 <code>index.html</code>。</p>
+        </div>
+        <a class="btn btn-primary" href="https://pages.github.com/" target="_blank" rel="noreferrer">查看部署说明</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="command-panel-wrap" id="commandPanel">
+    <div class="command-panel">
+      <div class="command-head">
+        <input id="commandInput" type="text" placeholder="输入关键词快速跳转，比如：方向 / 联系 / 笔记" />
+      </div>
+      <div class="command-list" id="commandList">
+        <div class="command-item" data-target="#about">
+          <div>
+            <strong>关于</strong><br />
+            <small>查看个人介绍和学习方向</small>
+          </div>
+          <span>↵</span>
+        </div>
+        <div class="command-item" data-target="#projects">
+          <div>
+            <strong>方向</strong><br />
+            <small>查看正在准备的项目方向</small>
+          </div>
+          <span>↵</span>
+        </div>
+        <div class="command-item" data-target="#notes">
+          <div>
+            <strong>笔记</strong><br />
+            <small>查看未来准备整理的内容</small>
+          </div>
+          <span>↵</span>
+        </div>
+        <div class="command-item" data-target="#contact">
+          <div>
+            <strong>联系</strong><br />
+            <small>查看 GitHub 和邮箱</small>
+          </div>
+          <span>↵</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const panel = document.getElementById('commandPanel');
+    const openBtn = document.getElementById('openCommand');
+    const input = document.getElementById('commandInput');
+    const items = [...document.querySelectorAll('.command-item')];
+
+    function openPanel() {
+      panel.classList.add('active');
+      setTimeout(() => input.focus(), 10);
+    }
+
+    function closePanel() {
+      panel.classList.remove('active');
+      input.value = '';
+      filterItems('');
+    }
+
+    function filterItems(keyword) {
+      const q = keyword.trim().toLowerCase();
+      items.forEach((item) => {
+        const text = item.innerText.toLowerCase();
+        item.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+
+    openBtn.addEventListener('click', openPanel);
+
+    panel.addEventListener('click', (e) => {
+      if (e.target === panel) closePanel();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'k' || e.key === 'K') && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        e.preventDefault();
+        panel.classList.contains('active') ? closePanel() : openPanel();
+      }
+      if (e.key === 'Escape' && panel.classList.contains('active')) {
+        closePanel();
+      }
+    });
+
+    input.addEventListener('input', (e) => filterItems(e.target.value));
+
+    items.forEach((item) => {
+      item.addEventListener('click', () => {
+        const target = document.querySelector(item.dataset.target);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        closePanel();
+      });
+    });
+  </script>
+</body>
+</html>
