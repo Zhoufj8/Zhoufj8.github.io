@@ -96,20 +96,21 @@
       color: #9dd7ff;
     }
 
-    
+    .nav a.active::after,
+    .nav a:hover::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -8px;
+      width: 42px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #29d0ff, #7a7fff);
+      box-shadow: 0 0 16px rgba(41, 208, 255, 0.35);
+    }
 
     .top-search {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 320px;
-      padding: 8px 10px 8px 12px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.08);
-      border-radius: 999px;
-      color: rgba(248, 244, 255, 0.9);
-      backdrop-filter: blur(12px);
-      transition: bo.top-search {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -174,17 +175,7 @@
       border-radius: 8px;
       color: #67d6ff;
       white-space: nowrap;
-    }ceholder {
-      color: rgba(248, 244, 255, 0.65);
     }
-
-    .top-search-kbd {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 12px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-bottom-width: 2px;
-      pad
 
     .section {
       position: relative;
@@ -625,7 +616,25 @@
 
     .section-subtitle {
       margin-top: 10px;
-      color: var.route-card {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .section-card {
+      border-radius: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .routes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .route-card {
       border-radius: 18px;
       padding: 20px;
       background: rgba(255,255,255,0.018);
@@ -652,19 +661,6 @@
       background: rgba(255,255,255,0.03);
       box-shadow: 0 0 0 1px rgba(77, 220, 255, 0.10), 0 0 28px rgba(77, 220, 255, 0.10);
       z-index: 2;
-    }    gap: 18px;
-    }
-
-    .route-card {
-      border-radius: 18px;
-      padding: 20px;
-      background: rgba(255,255,255,0.018);
-      border: 1px solid rgba(255,255,255,0.08);
-      min-height: 210px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      box-shadow: none;
     }
 
     .theme-about .routes {
@@ -673,7 +669,21 @@
 
     .theme-about .route-card {
       background: rgba(255,255,255,0.015);
-      border: 1px solid rgba(77, 220, 255,rder: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(77, 220, 255, 0.10);
+      box-shadow: none;
+      min-height: unset;
+    }
+
+    .theme-about .route-card:hover {
+      border-color: rgba(77, 220, 255, 0.14);
+    }
+
+    .route-label,
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
       background: var(--chip-bg);
       color: var(--chip-text);
       padding: 6px 12px;
@@ -709,6 +719,80 @@
       padding-left: 18px;
       margin: 0;
       color: var(--muted);
+    }
+
+    .route-card,
+    .project-card,
+    .article-card,
+    .contact-card,
+    .timeline-item {
+      position: relative;
+      overflow: hidden;
+      --mx: 50%;
+      --my: 50%;
+    }
+
+    .route-card::before,
+    .project-card::before,
+    .article-card::before,
+    .contact-card::before,
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: radial-gradient(220px circle at var(--mx) var(--my), rgba(77, 220, 255, 0.14), transparent 42%);
+      opacity: 0;
+      transition: opacity 0.22s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .route-card::after,
+    .project-card::after,
+    .article-card::after,
+    .contact-card::after,
+    .timeline-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .route-card > *,
+    .project-card > *,
+    .article-card > *,
+    .contact-card > *,
+    .timeline-item > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .route-card:hover::before,
+    .project-card:hover::before,
+    .article-card:hover::before,
+    .contact-card:hover::before,
+    .timeline-item:hover::before {
+      opacity: 1;
+    }
+
+    .project-card,
+    .article-card,
+    .contact-card,
+    .timeline-item {
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .project-card:hover,
+    .article-card:hover,
+    .contact-card:hover,
+    .timeline-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(103, 214, 255, 0.18);
+      background: rgba(255,255,255,0.026);
+      box-shadow: 0 0 0 1px rgba(77, 220, 255, 0.08), 0 0 24px rgba(77, 220, 255, 0.08);
     }
 
     .timeline {
@@ -1011,14 +1095,19 @@
     <div class="container topbar">
       <a class="brand" href="#top">
         <div class="brand-mark">ZF</div>
-        <div>Zhoufj<nav class="nav" aria-label="Main Navigation">
+        <div>Zhoufj8</div>
+      </a>
+
+      <nav class="nav" aria-label="Main Navigation">
         <a class="active" href="#top">首页</a>
         <a href="#about">关于</a>
         <a href="#timeline">路径</a>
         <a href="#projects">方向</a>
         <a href="#notes">笔记</a>
         <a href="#contact">联系</a>
-      </nav>ntact">联<form class="top-search" id="topSearchForm" aria-label="顶部搜索栏">
+      </nav>
+
+      <form class="top-search" id="topSearchForm" aria-label="顶部搜索栏">
         <span class="top-search-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21 21L16.65 16.65M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1026,7 +1115,6 @@
         </span>
         <input id="topSearchInput" type="text" placeholder="搜索板块 / 内容 / 页面" autocomplete="off" />
         <span class="top-search-kbd">K</span>
-      </form>bd">K</span>
       </form>
     </div>
   </header>
@@ -1053,7 +1141,19 @@
                 <span class="line-1">量化学习，个人研究主页</span>
                 <span class="line-2">慢慢构建自己的策略世界</span>
               </h1>
-           s="hero-pan class="muted">研究与笔记整理</span>
+              <p class="hero-subtitle">我是 Zhoufj8，一名量化爱好者。</p>
+              <p class="hero-description">
+                这里会逐步记录我的学习路径、研究兴趣、阅读笔记，以及未来准备公开的量化项目与实验。
+              </p>
+
+              <div class="hero-stats">
+                <div class="hero-stat">
+                  <strong>90%</strong>
+                  <span class="muted">学习热情在线</span>
+                </div>
+                <div class="hero-stat">
+                  <strong>持续更新</strong>
+                  <span class="muted">研究与笔记整理</span>
                 </div>
                 <div class="hero-stat">
                   <strong>0 → N</strong>
@@ -1450,6 +1550,10 @@
     const topSearchInput = document.getElementById('topSearchInput');
     const input = document.getElementById('commandInput');
     const items = [...document.querySelectorAll('.command-item')];
+    const navLinks = [...document.querySelectorAll('.nav a')];
+    const observedSections = ['top', 'about', 'timeline', 'projects', 'notes', 'contact']
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
 
     function openPanel() {
       panel.classList.add('active');
@@ -1465,23 +1569,6 @@
     function filterItems(keyword) {
       const q = keyword.trim().toLowerCase();
       items.forEach((item) => {
-        const textconst items = [...document.querySelectorAll('.command-item')];
-    const navLinks = [...document.querySelectorAll('.nav a')];
-    const observedSections = ['top', 'about', 'timeline', 'projects', 'notes', 'contact']
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);text.includes(q) ? 'flex' : 'none';
-      });
-    }
-
-    topSearchInput.addEventListener('focus', openPanel);
-    topSearchInput.addEventListener('input', (e) => {
-      openPanel();
-      input.value = e.target.value;
-      filterItems(e.target.value);
-    });
-
-    topSearchForm.addEventListener('submit', (e) => {
-      e.pitems.forEach((item) => {
       item.addEventListener('click', () => {
         const target = document.querySelector(item.dataset.target);
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1492,31 +1579,28 @@
 
     function setActiveNav(hash) {
       navLinks.forEach((link) => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${hash}`);
-      });
-    }
-
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target?.id) {
-          setActiveNav(visible.target.id);
-        }
-      },
-      {
-        rootMargin: '-20% 0px -55% 0px',
-        threshold: [0.15, 0.3, 0.5, 0.7]
-      }
-    );
-
-    observedSections.forEach((section) => sectionObserver.observe(section));
-
-    navLinks.forEach((link) => {
       link.addEventListener('click', () => {
         const hash = link.getAttribute('href')?.replace('#', '');
         if (hash) setActiveNav(hash);
       });
     });
+
+    const glowCards = document.querySelectorAll('.route-card, .project-card, .article-card, .contact-card, .timeline-item');
+
+    glowCards.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mx', `${x}px`);
+        card.style.setProperty('--my', `${y}px`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--mx', '50%');
+        card.style.setProperty('--my', '50%');
+      });
+    });
   </script>
+</body>
+</html>
