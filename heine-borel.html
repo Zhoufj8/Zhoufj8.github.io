@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heine-Borel 定理的证明整理 | Zhoufj8</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap">
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        macros: {
+          R: "\\mathbb{R}",
+          diam: "\\operatorname{diam}",
+          norm: ["\\left\\lVert #1 \\right\\rVert", 1],
+          set: ["\\left\\{ #1 \\right\\}", 1],
+          ball: ["B\\!\\left(#1,#2\\right)", 2]
+        }
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root{
+      --bg:#0a0a0f; --text:#e8e8f0; --text2:#a8a8bf;
+      --blue:#00d4ff; --purple:#b44aff; --green:#00ff88; --orange:#ff8c00;
+      --line:rgba(255,255,255,0.08);
+      --max:800px; /* 阅读模式宽度稍窄，更利于阅读 */
+    }
+    body{ margin:0; font-family:'Noto Sans SC',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; font-size: 1.05rem; }
+    a{ color:var(--blue); text-decoration:none; }
+    
+    .nav{ position:fixed;top:0;left:0;right:0;z-index:1000; backdrop-filter:blur(18px); background:rgba(10,10,15,0.82); border-bottom:1px solid var(--line); }
+    .nav-inner{ min-height:62px; display:flex; align-items:center; width:min(1180px,calc(100% - 32px)); margin:0 auto; }
+    .back-btn{ color:var(--text2); font-size:0.9rem; font-weight:500; transition:.2s;}
+    .back-btn:hover{ color:var(--blue); }
+
+    .article-container{ width:min(var(--max),calc(100% - 40px)); margin: 100px auto 80px; }
+    
+    /* 文章排版样式 */
+    h1{ font-size: 2.2rem; font-weight: 900; text-align: center; margin-bottom: 40px; }
+    h2{ font-size: 1.5rem; color: var(--blue); border-bottom: 1px solid var(--line); padding-bottom: 8px; margin-top: 40px;}
+    h3{ font-size: 1.2rem; margin-top: 30px;}
+    p { color: var(--text2); }
+    
+    /* 数学环境区块样式 */
+    .math-block {
+      padding: 16px 20px; margin: 20px 0; border-radius: 0 12px 12px 0;
+      background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent);
+    }
+    .def { border-left: 4px solid var(--green); }
+    .thm { border-left: 4px solid var(--purple); background: linear-gradient(90deg, rgba(180,74,255,0.1), transparent); }
+    .prop, .lemma { border-left: 4px solid var(--orange); }
+    
+    /* 证明环境（纯文本排版无背景）*/
+    .proof { margin: 15px 0 30px; color: var(--text2); }
+    .proof-title { font-weight: 700; font-style: italic; color: var(--text); margin-right: 8px;}
+    .qed { float: right; color: var(--text); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="notes.html" class="back-btn">← 返回分类目录</a>
+    </div>
+  </nav>
+
+  <div class="article-container">
+    <h1>Heine--Borel 定理的证明整理</h1>
+
+    <h2>1. 定理陈述与基本定义</h2>
+    <p>我们在欧氏空间 $\R^n$ 中讨论 Heine--Borel 定理。</p>
+
+    <div class="math-block def">
+      <strong>定义 1.1 (开覆盖与紧集).</strong><br>
+      设 $K\subset \R^n$。若一族开集 $\{U_\alpha\}_{\alpha\in A}$ 满足
+      $$K\subset \bigcup_{\alpha\in A}U_\alpha,$$
+      则称 $\{U_\alpha\}_{\alpha\in A}$ 是 $K$ 的一个<em>开覆盖</em>。若 $K$ 的任意开覆盖都存在有限子覆盖，即总能找到有限多个指标 $\alpha_1,\dots,\alpha_m$，使得
+      $$K\subset U_{\alpha_1}\cup\cdots\cup U_{\alpha_m},$$
+      则称 $K$ 为<em>紧集</em>。
+    </div>
+
+    <div class="math-block def">
+      <strong>定义 1.2 (闭集与有界集).</strong><br>
+      设 $E\subset \R^n$。<br>
+      1. 若 $\R^n\setminus E$ 为开集，则称 $E$ 为<em>闭集</em>；<br>
+      2. 若存在 $M>0$，使得对任意 $x\in E$ 都有 $\norm{x}\le M$，则称 $E$ 为<em>有界集</em>。
+    </div>
+
+    <div class="math-block def">
+      <strong>定义 1.3 (直径).</strong><br>
+      设 $E\subset \R^n$ 非空，定义其<em>直径</em>为
+      $$\diam(E):=\sup\set{\norm{x-y}:x,y\in E}.$$
+    </div>
+
+    <div class="math-block thm">
+      <strong>定理 1.4 (Heine--Borel 定理).</strong><br>
+      设 $K\subset \R^n$。则：
+      $$K\text{ 是紧集} \iff K\text{ 是闭且有界的}.$$
+    </div>
+
+    <p>下面分两部分证明该定理。</p>
+
+    <h2>2. 紧集必为闭且有界</h2>
+    
+    <h3>2.1 紧集必有界</h3>
+    <div class="math-block prop">
+      <strong>命题 2.1.</strong> 若 $K\subset \R^n$ 为紧集，则 $K$ 有界。
+    </div>
+    <div class="proof">
+      <span class="proof-title">证明.</span> 
+      对每个正整数 $m$，考虑以原点为中心、半径为 $m$ 的开球
+      $$\ball{0}{m}=\set{x\in \R^n:\norm{x}<m}.$$
+      显然 $\R^n=\bigcup_{m=1}^{\infty}\ball{0}{m}$，因此 $\{\ball{0}{m}\}_{m\ge 1}$ 是 $K$ 的一个开覆盖。由于 $K$ 紧，存在有限子覆盖
+      $$K\subset \ball{0}{m_1}\cup\cdots\cup\ball{0}{m_r}.$$
+      令 $M:=\max\{m_1,\dots,m_r\}$，则有 $K\subset \ball{0}{M}$。故 $K$ 有界。<span class="qed">$\blacksquare$</span>
+    </div>
+
+    <h3>2.2 紧集必闭</h3>
+    <div class="math-block prop">
+      <strong>命题 2.2.</strong> 若 $K\subset \R^n$ 为紧集，则 $K$ 为闭集。
+    </div>
+    <div class="proof">
+      <span class="proof-title">证明.</span> 
+      只需证明补集 $\R^n\setminus K$ 是开集。任取 $x\in \R^n\setminus K$。<br>
+      对每个 $y\in K$，有 $\norm{x-y}>0$，于是可考虑开球 $\ball{y}{\frac{\norm{x-y}}{2}}$。<br>
+      这些开球覆盖 $K$，故由紧性可取有限子覆盖：存在 $y_1,\dots,y_m\in K$，使得
+      $$K\subset \bigcup_{i=1}^m \ball{y_i}{\frac{\norm{x-y_i}}{2}}.$$
+      记 $r_i:=\frac{\norm{x-y_i}}{2}$，$\delta:=\min_{1\le i\le m}r_i>0$。<br>
+      我们证明 $\ball{x}{\delta}\subset \R^n\setminus K$。<br>
+      反设存在 $z\in \ball{x}{\delta}\cap K$。由于 $z\in K$，它必属于上面有限个开球中的某一个，故存在 $i$ 使得 $\norm{z-y_i}<r_i$。<br>
+      另一方面，由三角不等式，
+      $$\norm{x-y_i}\le \norm{x-z}+\norm{z-y_i}<\delta+r_i\le r_i+r_i=2r_i=\norm{x-y_i},$$
+      矛盾。因此 $\ball{x}{\delta}\cap K=\varnothing$，于是 $\ball{x}{\delta}\subset \R^n\setminus K$。<br>
+      这说明 $x$ 是补集的内点。由于 $x\in \R^n\setminus K$ 任取，故 $\R^n\setminus K$ 为开集，从而 $K$ 为闭集。
+      <span class="qed">$\blacksquare$</span>
+    </div>
+
+    <h2>3. 闭且有界必紧：关键引理</h2>
+    <p>为了证明逆命题，需要两个标准引理：<br>1. 闭立方体是紧集；<br>2. 紧集的闭子集仍然是紧集。</p>
+
+    <h3>3.1 套嵌闭立方体交定理</h3>
+    <div class="math-block lemma">
+      <strong>引理 3.1 (套嵌闭立方体交定理).</strong><br>
+      设 $Q_1\supset Q_2\supset Q_3\supset \cdots$ 是 $\R^n$ 中一列非空闭立方体，且 $\diam(Q_k)\to 0\quad (k\to\infty)$。则 $\bigcap_{k=1}^{\infty}Q_k$ 恰好只含一个点。
+    </div>
+    <div class="proof">
+      <span class="proof-title">证明.</span> 
+      将每个闭立方体写成 $Q_k=[a_1^{(k)},b_1^{(k)}]\times\cdots\times [a_n^{(k)},b_n^{(k)}]$。由于 $Q_{k+1}\subset Q_k$，对每个固定的 $i$ 都有 $[a_i^{(k+1)},b_i^{(k+1)}]\subset [a_i^{(k)},b_i^{(k)}]$。<br>
+      由一维区间套定理，存在 $x_i\in \bigcap_{k=1}^{\infty}[a_i^{(k)},b_i^{(k)}]$。<br>
+      令 $x:=(x_1,\dots,x_n)\in \R^n$。则对任意 $k$ 及任意 $i$，都有 $x_i\in [a_i^{(k)},b_i^{(k)}]$，故 $x\in Q_k$。于是交集非空。<br>
+      唯一性：若 $x,y\in \bigcap_{k=1}^{\infty}Q_k$，则对任意 $k$ 有 $\norm{x-y}\le \diam(Q_k)$。令 $k\to\infty$，由 $\diam(Q_k)\to 0$ 得 $\norm{x-y}=0$，即 $x=y$。<span class="qed">$\blacksquare$</span>
+    </div>
+
+    <h3>3.2 闭立方体与闭子集的紧性</h3>
+    <div class="math-block prop">
+      <strong>命题 3.2.</strong> 单位闭立方体 $[0,1]^n$ 是紧集。
+    </div>
+    <div class="proof">
+      <span class="proof-title">证明简述.</span>
+      反证法。若不紧，无限细分立方体并运用套嵌闭立方体定理，最终会利用直径趋于0和开覆盖的性质导出矛盾。
+      <span class="qed">$\blacksquare$</span>
+    </div>
+
+    <div class="math-block prop">
+      <strong>命题 3.3.</strong> 任意闭立方体是紧集。（通过连续映射同胚于单位立方体即可证明）。
+    </div>
+
+    <div class="math-block prop">
+      <strong>命题 3.4.</strong> 若 $K\subset \R^n$ 紧，且 $F\subset K$ 为闭集，则 $F$ 也是紧集。
+    </div>
+    <div class="proof">
+      <span class="proof-title">证明.</span> 
+      设 $\{U_\alpha\}$ 是 $F$ 的开覆盖。因 $F$ 闭，$\R^n\setminus F$ 是开集。于是 $\{U_\alpha\}\cup\{\R^n\setminus F\}$ 构成 $K$ 的开覆盖。<br>
+      由 $K$ 紧，存在有限子覆盖，将其与 $F$ 求交集，即得到 $F$ 的有限子覆盖。
+      <span class="qed">$\blacksquare$</span>
+    </div>
+
+    <h2>4. 闭且有界必紧与最终结论</h2>
+    <div class="math-block prop">
+      <strong>命题 4.1.</strong> 若 $K\subset \R^n$ 闭且有界，则 $K$ 紧。
+    </div>
+    <div class="proof">
+      <span class="proof-title">证明.</span> 
+      由于 $K$ 有界，存在 $M>0$ 使得 $K\subset [-M,M]^n$。闭立方体是紧集。又因为 $K$ 是闭集，故 $K$ 是紧集 $[-M,M]^n$ 的闭子集，所以 $K$ 紧。
+      <span class="qed">$\blacksquare$</span>
+    </div>
+
+    <p>综合上述推导，我们得出最终结论：</p>
+    <div class="math-block thm" style="text-align:center; font-size:1.2rem; padding: 25px;">
+      $K\subset \R^n \text{ 是紧集，当且仅当 } K \text{ 是闭且有界的。}$
+    </div>
+
+  </div>
+</body>
+</html>

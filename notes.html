@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>笔记目录 | Zhoufj8</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap">
+  <style>
+    /* 复用基础 CSS 变量，保持风格统一 */
+    :root{
+      --bg:#0a0a0f; --bg2:#12121a; --card:#171726; --line:rgba(180,74,255,0.15);
+      --blue:#00d4ff; --purple:#b44aff; --pink:#ff4a8d; --green:#00ff88;
+      --orange:#ff8c00; --yellow:#ffd700; --red:#ff5555;
+      --text:#e8e8f0; --text2:#a8a8bf; --muted:#6d6d88;
+      --gm:linear-gradient(135deg,#00d4ff 0%,#7d6bff 45%,#ff4a8d 100%);
+      --max:900px; /* 笔记列表页不需要太宽 */
+    }
+    body{ margin:0; font-family:'Noto Sans SC',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
+    a{ color:inherit; text-decoration:none; transition: 0.2s; }
+    .container{ width:min(var(--max),calc(100% - 32px)); margin:0 auto; padding-top: 100px; padding-bottom: 80px;}
+    
+    /* 顶部简约导航 */
+    .nav{ position:fixed;top:0;left:0;right:0;z-index:1000; backdrop-filter:blur(18px); background:rgba(10,10,15,0.82); border-bottom:1px solid var(--line); }
+    .nav-inner{ min-height:62px; display:flex; align-items:center; width:min(1180px,calc(100% - 32px)); margin:0 auto; }
+    .back-btn{ color:var(--text2); font-size:0.9rem; display:flex; align-items:center; gap:8px; font-weight:500;}
+    .back-btn:hover{ color:var(--blue); }
+
+    /* 页面标题 */
+    h1{ font-size: 2.5rem; font-weight: 900; background:var(--gm); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom: 10px;}
+    .subtitle{ color: var(--text2); margin-bottom: 50px; font-size: 1.1rem; }
+
+    /* 分类区块 */
+    .category-section{ margin-bottom: 50px; }
+    .category-title{ font-size: 1.4rem; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;}
+    
+    /* 笔记列表项 */
+    .note-item{ 
+      display: flex; justify-content: space-between; align-items: center; 
+      padding: 18px 22px; margin-bottom: 12px;
+      background: linear-gradient(180deg,rgba(26,26,46,0.5),rgba(20,20,34,0.5));
+      border: 1px solid rgba(180,74,255,0.1); border-radius: 16px;
+      transition: .25s ease;
+    }
+    .note-item:hover{ transform: translateX(6px); border-color: rgba(0,212,255,0.3); background: rgba(0,212,255,0.05); }
+    .note-title{ font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 4px; display: block;}
+    .note-meta{ font-size: 0.85rem; color: var(--muted); }
+    .tag{ font-size: 0.75rem; padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(0,212,255,0.2); color: var(--blue); background: rgba(0,212,255,0.05);}
+    .tag.math{ border-color: rgba(180,74,255,0.3); color: var(--purple); background: rgba(180,74,255,0.05); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="back-btn">← 返回个人主页</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Notes / 学习笔记</h1>
+    <p class="subtitle">记录量化开发、数学基础与算法体系的学习路径。</p>
+
+    <div class="category-section">
+      <div class="category-title"><span style="color:var(--purple)">#</span> 数学与基础理论 (Math & Theory)</div>
+      
+      <a href="heine-borel.html" class="note-item">
+        <div>
+          <span class="note-title">Heine-Borel 定理的证明整理</span>
+          <span class="note-meta">欧氏空间中紧集与闭有界集的等价性证明梳理</span>
+        </div>
+        <span class="tag math">拓扑 / 分析</span>
+      </a>
+
+      <div class="note-item" style="opacity: 0.5; pointer-events: none;">
+        <div>
+          <span class="note-title">SVD 奇异值分解及其在降维中的证明</span>
+          <span class="note-meta">整理中...</span>
+        </div>
+        <span class="tag math">线性代数</span>
+      </div>
+    </div>
+
+    <div class="category-section">
+      <div class="category-title"><span style="color:var(--green)">#</span> 量化与策略研究 (Quant)</div>
+      
+      <div class="note-item" style="opacity: 0.5; pointer-events: none;">
+        <div>
+          <span class="note-title">回测系统开发：滑点与手续费的底层逻辑</span>
+          <span class="note-meta">整理中...</span>
+        </div>
+        <span class="tag">策略回测</span>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

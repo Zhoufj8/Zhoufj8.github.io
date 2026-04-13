@@ -529,7 +529,7 @@
         <a href="#about">关于</a>
         <a href="#timeline">路径</a>
         <a href="#projects">方向</a>
-        <a href="#notes">笔记</a>
+        <a href="notes.html">笔记</a>
         <a href="#contact">联系</a>
         <button class="nav-quick" id="openCommand" type="button">快速跳转 <kbd>K</kbd></button>
       </div>
@@ -667,7 +667,7 @@
             <li>整理学习笔记与总结</li>
             <li>把想法逐步写成文章</li>
           </ol>
-          <a class="link-row" href="#notes">阅读笔记 →</a>
+          <a class="link-row" href="notes.html">阅读笔记 →</a>
         </article>
       </div>
 
@@ -710,7 +710,7 @@
           <div>
             <div class="chip alt-green">Build</div>
             <h4>把练习整理成可复用的代码</h4>
-            <p>把零散练习整理成可复现的代码和脚本，让每次尝试都能积累成之后可复用的研究资产。</p>
+            <p>把零散练习整理成可复现的代码 and 脚本，让每次尝试都能积累成之后可复用的研究资产。</p>
           </div>
         </article>
 
@@ -760,7 +760,7 @@
             <span class="chip alt-purple">Notes</span>
             <span class="chip alt-orange">Research</span>
           </div>
-          <a class="link-row" href="#notes">查看内容 →</a>
+          <a class="link-row" href="notes.html">查看内容 →</a>
         </article>
 
         <article class="project-card rv">
@@ -796,21 +796,21 @@
           <div class="chip">Essay</div>
           <h4>我为什么开始认真学习量化</h4>
           <p>记录自己进入量化领域的动机、兴趣来源，以及希望长期投入这个方向的原因。</p>
-          <a class="link-row" href="#">未来补充 →</a>
+          <a class="link-row" href="notes.html">查看分类 →</a>
         </article>
 
         <article class="article-card rv">
           <div class="chip alt-purple">Technical Note</div>
-          <h4>回测学习中的几个基础问题</h4>
-          <p>整理自己在学习过程中反复遇到的概念，比如收益计算、滑点、手续费与策略评价指标。</p>
-          <a class="link-row" href="#">未来补充 →</a>
+          <h4>数理基础与证明整理</h4>
+          <p>整理学习过程中遇到的数学公式、定理证明（如 Heine-Borel 定理）以及基础算法逻辑。</p>
+          <a class="link-row" href="notes.html">深度阅读 →</a>
         </article>
 
         <article class="article-card rv">
           <div class="chip alt-orange">Roadmap</div>
           <h4>未来准备公开的第一个项目会是什么</h4>
           <p>先给自己立一个公开目标：从最简单、最可完成的项目开始，把想法真正落地成代码。</p>
-          <a class="link-row" href="#">未来补充 →</a>
+          <a class="link-row" href="notes.html">查看计划 →</a>
         </article>
       </div>
 
@@ -898,10 +898,10 @@
           </div>
           <span>↵</span>
         </div>
-        <div class="command-item" data-target="#notes">
+        <div class="command-item" onclick="window.location.href='notes.html'">
           <div>
             <strong>笔记</strong><br />
-            <small>查看未来准备整理的内容</small>
+            <small>查看分类笔记与研究记录</small>
           </div>
           <span>↵</span>
         </div>
@@ -1052,9 +1052,12 @@
 
       items.forEach(item => {
         item.addEventListener('click', ()=>{
-          const target = document.querySelector(item.dataset.target);
-          if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
-          closePanel();
+          const targetStr = item.dataset.target;
+          if(targetStr) {
+            const target = document.querySelector(targetStr);
+            if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+            closePanel();
+          }
         });
       });
     })();
